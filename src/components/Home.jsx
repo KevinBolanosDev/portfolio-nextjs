@@ -3,8 +3,8 @@
 import { ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ReactDropzone from "./ReactDropzone";
 import { Button } from "./ui/button";
-import { ThemeToggle } from "./ui/theme-toggle";
 
 export function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +23,7 @@ export function Home() {
       id="home"
       className="min-h-screen flex items-center justify-center px-6 lg:px-12"
     >
-      <ThemeToggle />
+      <ReactDropzone />
       <div
         className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

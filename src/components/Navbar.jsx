@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ThemeToggle } from "./ui/theme-toggle";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,6 +33,10 @@ export function Navbar() {
             >
               Kevin Bolaños
             </a>
+          </div>
+
+          <div>
+            <ThemeToggle />
           </div>
 
           {/* Menú Desktop */}
