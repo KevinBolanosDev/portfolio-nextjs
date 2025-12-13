@@ -47,7 +47,7 @@ export function Home() {
           className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance"
         >
           Hola, soy{" "}
-          <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <span className="text-foreground font-bold bg-gradient-to-r from-primary to-accent bg-clip-text">
             Kevin Bolaños
           </span>
         </motion.h1>
