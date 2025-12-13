@@ -1,0 +1,64 @@
+"use client";
+import { Code, Github, Linkedin, Mail } from "lucide-react";
+
+export function Footer() {
+  const _currentYear = new Date().getFullYear();
+
+  const socialLinks = [
+    {
+      name: "GitHub",
+      href: "https://github.com/tuusuario",
+      icon: Github,
+    },
+    {
+      name: "LinkedIn",
+      href: "https://linkedin.com/in/tuusuario",
+      icon: Linkedin,
+    },
+    {
+      name: "Email",
+      href: "mailto:tu@email.com",
+      icon: Mail,
+    },
+  ];
+
+  return (
+    <footer className="border-t border-border/40 bg-background/80 backdrop-blur-sm">
+      <div className="h-[80px] container mx-auto px-4 py-4">
+        <div className="flex flex-col items-center justify-center gap-10 md:flex-row">
+          {/* Logo/Brand */}
+          <div className="flex items-center gap-2 text-base">
+            <Code className="h-5 w-5 text-primary" />
+            <span className="font-medium">Kevin Bolaños</span>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex text-base items-center gap-4">
+            {socialLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-full p-2 transition-all hover:bg-accent"
+                  aria-label={link.name}
+                >
+                  <Icon className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Optional: Tech stack badge */}
+        <div className="flex justify-center">
+          <p className="text-lg text-muted-foreground/60">
+            Copyright © 2025 Kevin Bolaños. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

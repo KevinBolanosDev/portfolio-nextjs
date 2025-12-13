@@ -68,7 +68,7 @@ export function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="py-20 px-6 lg:px-12 border-2 h-full border-blue-500"
+      className="py-20 px-6 lg:px-12 border-2 h-[86dvh] border-blue-500"
     >
       <div className="">
         <div
@@ -88,7 +88,7 @@ export function Projects() {
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <div
-                key={index}
+                key={project.title}
                 className={`group bg-card border border-border rounded-lg overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 ${
                   isVisible
                     ? "opacity-100 translate-y-0"

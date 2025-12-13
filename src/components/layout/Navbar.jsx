@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,7 +23,7 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between py-4">
           {/* Logo/Nombre */}
@@ -34,10 +36,12 @@ export function Navbar() {
             </a>
           </div>
 
+          <ThemeToggle />
+
           {/* Menú Desktop */}
           <ul className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item, index) => (
-              <li key={index}>
+            {menuItems.map((item) => (
+              <li key={item.href}>
                 <a
                   href={item.href}
                   className="relative px-4 py-2 text-foreground hover:text-primary transition-colors duration-300 group"
@@ -53,6 +57,7 @@ export function Navbar() {
 
           {/* Botón Hamburguesa */}
           <button
+            type="button"
             onClick={toggleMenu}
             className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center space-y-1 group"
             aria-label="Toggle menu"
@@ -83,7 +88,7 @@ export function Navbar() {
         >
           <ul className="py-4 space-y-2 border-t border-border/50">
             {menuItems.map((item, index) => (
-              <li key={index}>
+              <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={closeMenu}
@@ -106,10 +111,12 @@ export function Navbar() {
 
       {/* Overlay para cerrar menú en móvil */}
       {isMenuOpen && (
-        <div
+        <button
+          type="button"
           className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm -z-10"
           onClick={closeMenu}
-        ></div>
+          aria-label="Cerrar menú"
+        />
       )}
     </nav>
   );

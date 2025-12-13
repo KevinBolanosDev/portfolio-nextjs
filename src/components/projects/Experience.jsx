@@ -42,7 +42,7 @@ export function Experience() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (sectionRef.current) {
@@ -71,7 +71,7 @@ export function Experience() {
           <div className="space-y-8 mb-16">
             {experiences.map((exp, index) => (
               <div
-                key={index}
+                key={`${exp.title}-${exp.period}`}
                 className={`bg-card border border-border rounded-lg p-6 transition-all duration-500 hover:border-primary/50 ${
                   isVisible
                     ? "opacity-100 translate-x-0"
@@ -120,7 +120,7 @@ export function Experience() {
           <div className="flex flex-wrap justify-center gap-3 cursor-pointer">
             {certifications.map((cert, index) => (
               <span
-                key={index}
+                key={cert}
                 className={`px-4 py-2 bg-muted border border-border rounded-lg text-sm text-foreground transition-all duration-500 hover:border-primary/50 ${
                   isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
                 }`}

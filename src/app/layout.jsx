@@ -1,6 +1,9 @@
-import { Navbar } from "@/components/Navbar";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
+
+import { Footer } from "@/components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { ThemeProvider } from "@/components/layout/theme-provider";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -19,8 +22,11 @@ export default function RootLayout({ children }) {
     <html lang="es" className={`${inter.variable}`} suppressHydrationWarning>
       <body className="font-sans">
         <ThemeProvider>
-          <Navbar />
-          <main>{children}</main>
+          <div className="flex flex-col">
+            <Navbar />
+            <main className="flex flex-col flex-1">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
