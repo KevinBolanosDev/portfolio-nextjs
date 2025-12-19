@@ -1,18 +1,16 @@
 import { About } from "@/components/about/About";
-import { Experience } from "@/components/projects/Experience";
+import { Experience } from "@/components/about/Experience";
 
 function AboutPage() {
   return (
-    <div>
-      <main className="flex gap-10 h-[86dvh]">
-        <div className="w-1/2">
-          <About id="about" />
-        </div>
-        <div className="w-1/2">
-          <Experience id="experience" />
-        </div>
-      </main>
-    </div>
+    <main className="flex-1 flex gap-10 px-6 py-12">
+      <div className="w-1/2">
+        <About id="about" />
+      </div>
+      <div className="w-1/2">
+        <Experience id="experience" />
+      </div>
+    </main>
   );
 }
 

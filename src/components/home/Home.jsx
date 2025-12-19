@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Code2, Rocket, Sparkles } from "lucide-react";
+import { ArrowRight, Code2, Rocket, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
@@ -16,7 +16,7 @@ export function Home() {
   return (
     <section
       id="home"
-      className="relative h-[86dvh] border-2 border-blue-500 flex items-center justify-center px-6 overflow-hidden"
+      className="relative flex-1 flex items-center justify-center px-6 overflow-hidden"
     >
       {/* Gradiente de fondo animado */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 animate-pulse-slow" />
@@ -134,19 +134,6 @@ export function Home() {
               Contactar
             </Button>
           </Link>
-        </motion.div>
-
-        {/* Indicador de scroll */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isVisible ? 1 : 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-2 text-muted-foreground animate-bounce">
-            <span className="text-xs font-medium">Scroll para explorar</span>
-            <ChevronDown className="w-6 h-6" />
-          </div>
         </motion.div>
       </div>
     </section>

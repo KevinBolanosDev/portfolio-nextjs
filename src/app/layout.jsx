@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="es" className={`${inter.variable}`} suppressHydrationWarning>
       <body className="font-sans">
         <ThemeProvider>
-          <div className="flex flex-col">
+          <div className="min-h-dvh flex flex-col">
             <Navbar />
             <main className="flex flex-col flex-1">{children}</main>
             <Footer />

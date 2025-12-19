@@ -57,7 +57,7 @@ export function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="py-20 px-6 lg:px-12 bg-muted/30 h-[86dvh]"
+      className="flex-1 py-20 px-6 lg:px-12 bg-muted/30"
     >
       <div className="max-w-4xl mx-auto">
         <div
