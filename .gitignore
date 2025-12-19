@@ -11,6 +11,9 @@
 !.yarn/versions
 .claude
 
+# documents
+/SUPABASE_STORAGE_STRUCTURE.md
+
 # testing
 /coverage
 

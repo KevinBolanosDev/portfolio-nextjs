@@ -1,3 +1,5 @@
+import { getStorageUrl } from "./supabase";
+
 // Proyectos profesionales / empresariales
 export const professionalProjects = [
   {
@@ -5,40 +7,55 @@ export const professionalProjects = [
     title: "AriaLeads",
     description:
       "Plataforma SaaS empresarial de gestión integral de leads para la industria de seguros de vida, con dashboards para administradores y agentes.",
-    image: "/project-001.png",
+    image: getStorageUrl("portfolio-images", "projects/project-001.png"),
     technologies: ["React", "Next.js", "TailwindCSS", "Node.js", "PostgreSQL"],
     githubUrl: null, // Proyecto privado
     demoUrl: "https://login.arialeads.com",
     gallery: [
       {
-        src: "/projects/arialeads/login.png",
+        src: getStorageUrl("portfolio-images", "projects/arialeads/login.png"),
         title: "Página de Login",
         description:
           "Sistema de autenticación seguro con diseño moderno y call-to-action atractivo.",
       },
       {
-        src: "/projects/arialeads/admin-dashboard.png",
+        src: getStorageUrl("portfolio-images", "projects/arialeads/admin.png"),
         title: "Admin Control Center",
         description:
           "Panel de administración con métricas en tiempo real: 38,734 agentes totales, 98.3% activos.",
       },
       {
-        src: "/projects/arialeads/agent-dashboard.png",
+        src: getStorageUrl(
+          "portfolio-images",
+          "projects/arialeads/agent-dash.png"
+        ),
         title: "Agent Dashboard",
         description:
           "Dashboard personalizado para agentes con KPIs, leads y tracking de premiums ($692,659+).",
       },
       {
-        src: "/projects/arialeads/my-leads.png",
+        src: getStorageUrl("portfolio-images", "projects/arialeads/leads.png"),
         title: "Gestión de Leads",
         description:
           "Sistema de gestión de leads con filtros avanzados, categorías (Gold/Silver) y exportación.",
       },
       {
-        src: "/projects/arialeads/marketplace.png",
+        src: getStorageUrl(
+          "portfolio-images",
+          "projects/arialeads/marketplace.png"
+        ),
         title: "Marketplace de Leads",
         description:
           "Mapa interactivo de USA con +160,000 leads disponibles y filtros por estado/condado.",
+      },
+      {
+        src: getStorageUrl(
+          "portfolio-images",
+          "projects/arialeads/support.png"
+        ),
+        title: "Support",
+        description:
+          "Sistema de soporte con tickets, incidencias y seguimiento de casos.",
       },
     ],
     documentation: {
@@ -69,7 +86,7 @@ export const projects = [
     title: "Primer CV",
     description:
       "Mi primer proyecto web: un CV personal construido desde cero con HTML y CSS, aplicando fundamentos de estructura web y diseño visual.",
-    href: "https://dmzuhmxpktahdtzwuwci.supabase.co/storage/v1/object/public/portfolio-images/projects/first-cv.png",
+    image: getStorageUrl("portfolio-images", "projects/first-cv.png"),
     technologies: ["HTML", "CSS"],
     githubUrl: "https://github.com/KevinBolanosDev/html_intro_cv",
     demoUrl: "https://kevinbolanosdev.github.io/html_intro_cv/",
@@ -94,7 +111,7 @@ export const projects = [
     title: "First Portfolio Web",
     description:
       "Mi primer portafolio web con múltiples secciones, navegación entre tabs, información personal, proyectos y formulario de contacto.",
-    image: "/first-portfolio.png",
+    image: getStorageUrl("portfolio-images", "projects/first-portfolio.png"),
     technologies: ["HTML", "CSS", "JavaScript"],
     githubUrl: "https://github.com/KevinBolanosDev/personal-cv",
     demoUrl: "https://kevin-bolanos-dev-cv.netlify.app/",
@@ -119,7 +136,7 @@ export const projects = [
     title: "News Homepage",
     description:
       "Página de noticias moderna con múltiples secciones, desarrollada como challenge de Frontend Mentor usando React y TailwindCSS.",
-    image: "/news-homepage.png",
+    image: getStorageUrl("portfolio-images", "projects/news-homepage.png"),
     technologies: ["React", "TailwindCSS"],
     githubUrl:
       "https://github.com/KevinBolanosDev/news-homepage-frontend-mentor",
@@ -145,7 +162,7 @@ export const projects = [
     title: "Second Portfolio Web",
     description:
       "Mi segundo portafolio profesional con diseño oscuro futurista, secciones interactivas, galería de proyectos y formulario de contacto funcional.",
-    image: "/second-portfolio.png",
+    image: getStorageUrl("portfolio-images", "projects/second-portfolio.png"),
     technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Animate.css"],
     githubUrl: "https://github.com/KevinBolanosDev/kevin-b-portfolio-dev",
     demoUrl: "https://kevin-b-portfolio-dev.netlify.app/",

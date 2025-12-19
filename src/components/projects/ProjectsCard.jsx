@@ -38,7 +38,7 @@ export function ProjectsCard({
       )}
 
       {/* Image */}
-      {project.image?.startsWith("/") && (
+      {project.image && (
         <div className="relative aspect-video w-full overflow-hidden">
           <Image
             src={project.image}
