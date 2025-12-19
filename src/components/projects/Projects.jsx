@@ -14,8 +14,17 @@ export function Projects() {
   const [galleryProject, setGalleryProject] = useState(null);
 
   return (
-    <section id="proyectos" className="w-full flex-1 py-12">
-      <div className="px-6 mx-auto h-full overflow-y-auto scrollbar-hide">
+    <section id="proyectos" className="relative w-full flex-1 py-12 overflow-hidden">
+      {/* Gradiente de fondo animado */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
+
+      {/* Efectos de fondo sutiles */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-40 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-float-delayed" />
+      </div>
+
+      <div className="relative z-10 px-6 mx-auto h-full overflow-y-auto scrollbar-hide">
         {/* Main header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -57,9 +57,17 @@ export function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="flex-1 py-20 px-6 lg:px-12 bg-muted/30"
+      className="relative flex-1 py-20 px-6 lg:px-12 overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto">
+      {/* Gradiente de fondo animado */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
+
+      {/* Efectos de fondo sutiles */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-10 right-20 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-float-delayed" />
+      </div>
+      <div className="relative z-10 max-w-4xl mx-auto">
         <div
           className={`transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

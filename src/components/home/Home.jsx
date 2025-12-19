@@ -16,15 +16,27 @@ export function Home() {
   return (
     <section
       id="home"
-      className="relative flex-1 flex items-center justify-center px-6 overflow-hidden"
+      className="relative min-h-[calc(100dvh-4rem)] flex-1 flex items-center justify-center px-6 overflow-hidden"
     >
-      {/* Gradiente de fondo animado */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 animate-pulse-slow" />
+      {/* Imagen de fondo con efecto degradado profesional */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            "url('https://dmzuhmxpktahdtzwuwci.supabase.co/storage/v1/object/public/portfolio-images/background.jpg')",
+        }}
+      />
+      {/* Overlay degradado para desvanecer la imagen */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
+
+      {/* Gradiente de fondo animado (sobre la imagen) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-pulse-slow" />
 
       {/* Efectos de fondo sutiles */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float-delayed" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-float-delayed" />
       </div>
 
       <div className="relative z-10 max-w-5xl w-full mx-auto text-center">
