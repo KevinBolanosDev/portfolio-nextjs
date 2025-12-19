@@ -1,17 +1,14 @@
 "use client";
 
+import { useHydrated } from "@/hooks/use-hydration";
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Rocket, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 export function Home() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  // Usar hook de hidratación para evitar mismatch SSR/Client
+  const isHydrated = useHydrated();
 
   return (
     <section
@@ -43,7 +40,7 @@ export function Home() {
         {/* Badge animado */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
+          animate={{ opacity: isHydrated ? 1 : 0, y: isHydrated ? 0 : -20 }}
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-primary/10 border border-primary/20 rounded-full text-sm text-primary backdrop-blur-sm"
         >
@@ -54,7 +51,7 @@ export function Home() {
         {/* Título principal */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+          animate={{ opacity: isHydrated ? 1 : 0, y: isHydrated ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance"
         >
@@ -67,7 +64,7 @@ export function Home() {
         {/* Subtítulo */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+          animate={{ opacity: isHydrated ? 1 : 0, y: isHydrated ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 text-balance font-light"
         >
@@ -80,7 +77,7 @@ export function Home() {
         {/* Descripción */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+          animate={{ opacity: isHydrated ? 1 : 0, y: isHydrated ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed text-pretty"
         >
@@ -94,8 +91,8 @@ export function Home() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{
-            opacity: isVisible ? 1 : 0,
-            scale: isVisible ? 1 : 0.9,
+            opacity: isHydrated ? 1 : 0,
+            scale: isHydrated ? 1 : 0.9,
           }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex items-center justify-center gap-6 mb-12"
@@ -113,7 +110,7 @@ export function Home() {
         {/* Botones de acción */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+          animate={{ opacity: isHydrated ? 1 : 0, y: isHydrated ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 1 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
