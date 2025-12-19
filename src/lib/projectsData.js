@@ -9,6 +9,38 @@ export const professionalProjects = [
     technologies: ["React", "Next.js", "TailwindCSS", "Node.js", "PostgreSQL"],
     githubUrl: null, // Proyecto privado
     demoUrl: "https://login.arialeads.com",
+    gallery: [
+      {
+        src: "/projects/arialeads/login.png",
+        title: "Página de Login",
+        description:
+          "Sistema de autenticación seguro con diseño moderno y call-to-action atractivo.",
+      },
+      {
+        src: "/projects/arialeads/admin-dashboard.png",
+        title: "Admin Control Center",
+        description:
+          "Panel de administración con métricas en tiempo real: 38,734 agentes totales, 98.3% activos.",
+      },
+      {
+        src: "/projects/arialeads/agent-dashboard.png",
+        title: "Agent Dashboard",
+        description:
+          "Dashboard personalizado para agentes con KPIs, leads y tracking de premiums ($692,659+).",
+      },
+      {
+        src: "/projects/arialeads/my-leads.png",
+        title: "Gestión de Leads",
+        description:
+          "Sistema de gestión de leads con filtros avanzados, categorías (Gold/Silver) y exportación.",
+      },
+      {
+        src: "/projects/arialeads/marketplace.png",
+        title: "Marketplace de Leads",
+        description:
+          "Mapa interactivo de USA con +160,000 leads disponibles y filtros por estado/condado.",
+      },
+    ],
     documentation: {
       overview:
         "AriaLeads es una plataforma SaaS empresarial de gestión integral de leads (clientes potenciales) desarrollada con tecnologías modernas de React/Next.js. El sistema está diseñado para la compra, venta, distribución y gestión de leads en la industria de seguros de vida y otros sectores comerciales.",
@@ -37,7 +69,7 @@ export const projects = [
     title: "Primer CV",
     description:
       "Mi primer proyecto web: un CV personal construido desde cero con HTML y CSS, aplicando fundamentos de estructura web y diseño visual.",
-    image: "/first-cv.png",
+    href: "https://dmzuhmxpktahdtzwuwci.supabase.co/storage/v1/object/public/portfolio-images/projects/first-cv.png",
     technologies: ["HTML", "CSS"],
     githubUrl: "https://github.com/KevinBolanosDev/html_intro_cv",
     demoUrl: "https://kevinbolanosdev.github.io/html_intro_cv/",

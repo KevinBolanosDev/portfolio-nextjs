@@ -7,9 +7,11 @@ import { useState } from "react";
 import { professionalProjects, projects } from "@/lib/projectsData";
 import { ProjectsCard } from "./ProjectsCard";
 import { ProjectsDocs } from "./ProjectsDocs";
+import { ProjectsGallery } from "./ProjectsGallery";
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [galleryProject, setGalleryProject] = useState(null);
 
   return (
     <section id="proyectos" className="w-full flex-1 py-12">
@@ -59,6 +61,7 @@ export function Projects() {
                 project={project}
                 index={index}
                 onViewDocs={setSelectedProject}
+                onViewGallery={setGalleryProject}
                 isProfessional
               />
             ))}
@@ -106,6 +109,7 @@ export function Projects() {
                 project={project}
                 index={index}
                 onViewDocs={setSelectedProject}
+                onViewGallery={setGalleryProject}
               />
             ))}
           </div>
@@ -117,6 +121,13 @@ export function Projects() {
         project={selectedProject}
         isOpen={selectedProject !== null}
         onClose={() => setSelectedProject(null)}
+      />
+
+      {/* Gallery modal */}
+      <ProjectsGallery
+        project={galleryProject}
+        isOpen={galleryProject !== null}
+        onClose={() => setGalleryProject(null)}
       />
     </section>
   );

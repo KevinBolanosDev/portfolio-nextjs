@@ -1,8 +1,21 @@
 import { motion } from "framer-motion";
-import { Briefcase, ExternalLink, FileText, Github, Lock } from "lucide-react";
+import {
+  Briefcase,
+  ExternalLink,
+  FileText,
+  Github,
+  Images,
+  Lock,
+} from "lucide-react";
 import Image from "next/image";
 
-export function ProjectsCard({ project, index, onViewDocs, isProfessional }) {
+export function ProjectsCard({
+  project,
+  index,
+  onViewDocs,
+  onViewGallery,
+  isProfessional,
+}) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
@@ -62,7 +75,7 @@ export function ProjectsCard({ project, index, onViewDocs, isProfessional }) {
         </div>
 
         {/* Links */}
-        <div className="mt-5 flex items-center gap-4 border-t border-border/50 pt-4">
+        <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-border/50 pt-4">
           {project.githubUrl ? (
             <a
               href={project.githubUrl}
@@ -88,14 +101,26 @@ export function ProjectsCard({ project, index, onViewDocs, isProfessional }) {
             <ExternalLink className="h-4 w-4" />
             Demo
           </a>
-          <button
-            type="button"
-            onClick={() => onViewDocs(project)}
-            className="ml-auto inline-flex items-center gap-2 text-sm text-primary transition-colors hover:text-primary/80"
-          >
-            <FileText className="h-4 w-4" />
-            Docs
-          </button>
+          <div className="ml-auto flex items-center gap-2">
+            {project.gallery && project.gallery.length > 0 && (
+              <button
+                type="button"
+                onClick={() => onViewGallery(project)}
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Images className="h-4 w-4" />
+                Galería
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => onViewDocs(project)}
+              className="inline-flex items-center gap-2 text-sm text-primary transition-colors hover:text-primary/80"
+            >
+              <FileText className="h-4 w-4" />
+              Docs
+            </button>
+          </div>
         </div>
       </div>
     </motion.article>
