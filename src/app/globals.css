@@ -5,8 +5,12 @@
 
 @theme {
   /* Fuentes */
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo,
+    monospace;
 
   /* Colores del tema claro */
   --color-background: oklch(1 0 0);
@@ -56,7 +60,9 @@
   }
 
   body {
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
     @apply bg-background text-foreground antialiased;
   }
 }
@@ -87,7 +93,6 @@
 }
 
 @keyframes glow {
-
   0%,
   100% {
     box-shadow: 0 0 20px oklch(0.55 0.12 180 / 0.3);
@@ -153,11 +158,19 @@ html {
 
 /* Creative gradient backgrounds */
 .gradient-accent {
-  background: linear-gradient(135deg, oklch(0.55 0.12 180) 0%, oklch(0.25 0.08 160) 100%);
+  background: linear-gradient(
+    135deg,
+    oklch(0.55 0.12 180) 0%,
+    oklch(0.25 0.08 160) 100%
+  );
 }
 
 .gradient-subtle {
-  background: linear-gradient(135deg, oklch(0.98 0.005 20) 0%, oklch(0.94 0.015 20) 100%);
+  background: linear-gradient(
+    135deg,
+    oklch(0.98 0.005 20) 0%,
+    oklch(0.94 0.015 20) 100%
+  );
 }
 
 /* Creative hover effects */
@@ -203,4 +216,50 @@ html {
   --color-sidebar-accent-foreground: oklch(0.985 0 0);
   --color-sidebar-border: oklch(1 0 0 / 10%);
   --color-sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Animaciones personalizadas para la página de inicio */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+
+  50% {
+    transform: translateY(-30px) translateX(-15px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
 }
