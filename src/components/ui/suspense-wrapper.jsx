@@ -55,8 +55,8 @@ export function CardSuspense({ children, count = 1 }) {
     <Suspense
       fallback={
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: count }).map((_, i) => (
-            <SkeletonProjectCard key={`card-skeleton-${i}`} />
+          {Array.from({ length: count }).map((_, _i) => (
+            <SkeletonProjectCard key={`card-skeleton-${crypto.randomUUID()}`} />
           ))}
         </div>
       }

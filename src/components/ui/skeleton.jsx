@@ -20,7 +20,7 @@ function SkeletonText({ lines = 3, className }) {
     <div className={cn("space-y-2", className)}>
       {Array.from({ length: lines }).map((_, i) => (
         <Skeleton
-          key={`skeleton-line-${i}`}
+          key={`skeleton-line-${crypto.randomUUID()}`}
           className={cn("h-4", i === lines - 1 ? "w-3/4" : "w-full")}
         />
       ))}
@@ -104,7 +104,7 @@ function SkeletonGallery({ items = 6, className }) {
     >
       {Array.from({ length: items }).map((_, i) => (
         <Skeleton
-          key={`skeleton-gallery-${i}`}
+          key={`skeleton-gallery-${crypto.randomUUID()}`}
           className={cn("rounded-2xl", patterns[i % patterns.length])}
         />
       ))}

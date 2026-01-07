@@ -10,9 +10,11 @@
 !.yarn/releases
 !.yarn/versions
 .claude
+.vscode/settings.json
 
 # documents
 /SUPABASE_STORAGE_STRUCTURE.md
+CLAUDE.md
 
 # testing
 /coverage

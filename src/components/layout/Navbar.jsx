@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
@@ -102,14 +102,13 @@ export function Navbar() {
         }`}
       >
         {/* Overlay con blur */}
-        <div
+        <button
+          type="button"
           className={`absolute inset-0 bg-background/60 backdrop-blur-xl transition-opacity duration-300 ${
             isMenuOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={closeMenu}
           onKeyDown={(e) => e.key === "Escape" && closeMenu()}
-          role="button"
-          tabIndex={0}
           aria-label="Cerrar menú"
         />
 

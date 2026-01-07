@@ -1,9 +1,9 @@
 "use client";
 
-import { useHydrated } from "@/hooks/use-hydration";
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Rocket, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { useHydrated } from "@/hooks/use-hydration";
 import { Button } from "../ui/button";
 
 export function Home() {

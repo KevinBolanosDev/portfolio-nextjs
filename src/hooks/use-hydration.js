@@ -47,7 +47,7 @@ export function useAfterHydration(callback, deps = []) {
     if (hydrated) {
       return callback();
     }
-  }, [hydrated, ...deps]);
+  }, [hydrated, ...deps, callback]);
 }
 
 /**

@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { AlertCircle, RefreshCw, WifiOff, XCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "./button";
 
 /**

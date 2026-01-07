@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import {
   FileQuestion,
   FolderOpen,
@@ -6,6 +5,7 @@ import {
   Inbox,
   Search,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "./button";
 
 /**
