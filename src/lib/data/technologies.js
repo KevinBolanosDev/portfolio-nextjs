@@ -45,7 +45,6 @@ export const frontendTech = [
 export const backendTech = [
   { name: "Node.js", color: "#339933", icon: "nodejs", category: "backend" },
   { name: "Express", color: "#000000", icon: "express", category: "backend" },
-  { name: "Java", color: "#007396", icon: "java", category: "backend" },
 ];
 
 /**
@@ -94,9 +93,7 @@ export const allTechnologies = [
  * Helpers
  */
 export const getTechByName = (name) =>
-  allTechnologies.find(
-    (t) => t.name.toLowerCase() === name.toLowerCase()
-  );
+  allTechnologies.find((t) => t.name.toLowerCase() === name.toLowerCase());
 
 export const getTechsByCategory = (category) =>
   allTechnologies.filter((t) => t.category === category);
@@ -105,8 +102,3 @@ export const getTechColor = (name) => {
   const tech = getTechByName(name);
   return tech?.color || "#6B7280";
 };
-
-
-
-
-
