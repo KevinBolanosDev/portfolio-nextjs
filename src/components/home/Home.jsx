@@ -13,7 +13,7 @@ export function Home() {
   return (
     <section
       id="home"
-      className="relative min-h-[calc(100dvh-4rem)] flex-1 flex items-center justify-center px-6 overflow-hidden"
+      className="relative min-h-[calc(100dvh)] flex-1 flex items-center justify-center px-6 overflow-hidden"
     >
       {/* Imagen de fondo con efecto degradado profesional */}
       <div
@@ -28,13 +28,13 @@ export function Home() {
       <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
 
       {/* Gradiente de fondo animado (sobre la imagen) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-pulse-slow" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-blue-500/20 animate-pulse-slow" />
 
       {/* Efectos de fondo sutiles */}
-      <div className="absolute inset-0 opacity-20">
+      {/* <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-float-delayed" />
-      </div>
+      </div> */}
 
       <div className="relative z-10 max-w-5xl w-full mx-auto text-center">
         {/* Badge animado */}
@@ -68,7 +68,7 @@ export function Home() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 text-balance font-light"
         >
-          Desarrollador Full Stack especializado en crear{" "}
+          Desarrollador Full Stack especializado en Frontend ycrear{" "}
           <span className="text-foreground font-medium">
             experiencias web excepcionales
           </span>
@@ -82,9 +82,13 @@ export function Home() {
           className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed text-pretty"
         >
           Transformo ideas en soluciones digitales robustas y escalables usando
-          <span className="text-primary font-medium"> React</span>,
-          <span className="text-primary font-medium"> Node.js</span> y
-          tecnologías de vanguardia.
+          <span className="text-primary font-medium">
+            {" "}
+            React.js y Next.js
+          </span>{" "}
+          para el frontend,
+          <span className="text-primary font-medium"> Node.js</span> para el
+          backend, tecnologías de vanguardia.
         </motion.p>
 
         {/* Iconos de tecnologías */}
