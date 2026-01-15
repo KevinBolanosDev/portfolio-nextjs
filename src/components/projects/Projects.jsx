@@ -1,11 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, FileCode } from "lucide-react";
 import { useState } from "react";
-
 import { professionalProjects, projects } from "@/lib/data/projectsData";
-import { FileCode } from "lucide-react";
 import { ProjectsCard } from "./ProjectsCard";
 import { ProjectsDocs } from "./ProjectsDocs";
 import { ProjectsGallery } from "./ProjectsGallery";
