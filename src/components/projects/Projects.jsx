@@ -20,12 +20,6 @@ export function Projects() {
       {/* Gradiente de fondo animado */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-300/20 via-background to-blue-300/20" />
 
-      {/* Efectos de fondo sutiles */}
-      {/* <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-40 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-float-delayed" />
-      </div> */}
-
       <div className="relative z-10 px-6 mx-auto h-full overflow-y-auto scrollbar-hide">
         {/* Main header */}
         <motion.div

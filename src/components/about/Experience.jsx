@@ -20,10 +20,10 @@ export function Experience() {
         transition={{ duration: 0.6 }}
         className="mb-6"
       >
-        <h2 className="text-2xl font-bold text-foreground mb-1">
+        <h2 className="text-2xl text-center font-bold text-foreground mb-1">
           Experiencia & Educación
         </h2>
-        <p className="text-muted-foreground text-sm">
+        <p className="text-muted-foreground text-sm text-center">
           Mi trayectoria profesional y formación académica
         </p>
       </motion.div>

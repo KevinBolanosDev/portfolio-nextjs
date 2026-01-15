@@ -7,6 +7,8 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const _currentYear = new Date().getFullYear();
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -132,7 +134,9 @@ export function Navbar() {
                       : "-translate-x-4 opacity-0"
                   }`}
                   style={{
-                    transitionDelay: isMenuOpen ? `${index * 75 + 100}ms` : "0ms",
+                    transitionDelay: isMenuOpen
+                      ? `${index * 75 + 100}ms`
+                      : "0ms",
                   }}
                 >
                   <span className="w-2 h-2 rounded-full bg-primary/50" />
@@ -150,7 +154,7 @@ export function Navbar() {
             style={{ transitionDelay: isMenuOpen ? "400ms" : "0ms" }}
           >
             <p className="text-xs text-muted-foreground text-center">
-              © 2024 Kevin Bolaños
+              © {_currentYear} Kevin Bolaños
             </p>
           </div>
         </div>
