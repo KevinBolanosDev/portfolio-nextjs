@@ -25,14 +25,14 @@ export function ProjectsCard({
       whileHover={{ y: -5 }}
       className={`group relative overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:shadow-xl ${
         isProfessional
-          ? "border-primary/30 hover:border-primary/50 hover:shadow-primary/10"
-          : "border-border/50 hover:border-primary/30 hover:shadow-primary/5"
+          ? "border-sky-600/50 hover:border-sky-700/60 hover:shadow-sky-500/5"
+          : "border-yellow-500/50 hover:border-yellow-700/60 hover:shadow-yellow-500/5"
       }`}
     >
       {/* Professional Badge */}
       {isProfessional && (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground shadow-lg">
-          <Briefcase className="h-3 w-3" />
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-cyan-700 px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+          <Briefcase className="h-4 w-4" />
           Profesional
         </div>
       )}
@@ -54,6 +54,11 @@ export function ProjectsCard({
         <h3 className="font-display text-lg font-semibold text-foreground">
           {project.title}
         </h3>
+        <div
+          className={`border-t ${
+            isProfessional ? "border-sky-600/50" : "border-yellow-500/50"
+          } my-2`}
+        ></div>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-3">
           {project.description}
         </p>
@@ -65,8 +70,8 @@ export function ProjectsCard({
               key={tech}
               className={`rounded-full border px-3 py-1 text-xs font-medium ${
                 isProfessional
-                  ? "border-primary/30 bg-primary/10 text-primary"
-                  : "border-border/50 bg-secondary/50 text-secondary-foreground"
+                  ? "border-primary/30 bg-sky-600/50 text-primary"
+                  : "border-border/50 bg-yellow-500/50 text-secondary-foreground"
               }`}
             >
               {tech}
@@ -106,7 +111,7 @@ export function ProjectsCard({
               <button
                 type="button"
                 onClick={() => onViewGallery(project)}
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary cursor-pointer"
               >
                 <Images className="h-4 w-4" />
                 Galería
@@ -115,7 +120,7 @@ export function ProjectsCard({
             <button
               type="button"
               onClick={() => onViewDocs(project)}
-              className="inline-flex items-center gap-2 text-sm text-primary transition-colors hover:text-primary/80"
+              className="inline-flex items-center gap-2 text-sm text-primary transition-colors hover:text-primary/80 cursor-pointer"
             >
               <FileText className="h-4 w-4" />
               Docs
