@@ -56,7 +56,7 @@ export function Footer() {
         {/* Optional: Tech stack badge */}
         <div className="flex justify-center mx-auto mt-2">
           <p className="text-sm sm:text-lg text-muted-foreground/60">
-            "Copyright ©" {_currentYear} Todos los derechos reservados.
+            Copyright © {_currentYear} Todos los derechos reservados.
           </p>
         </div>
       </div>

@@ -1,14 +1,14 @@
-import { getStorageUrl } from "./supabase";
+import { getStorageUrl } from "../supabase";
 
 // Proyectos profesionales / empresariales
 export const professionalProjects = [
   {
-    id: 100,
+    id: 1,
     title: "AriaLeads",
     description:
       "Plataforma SaaS empresarial de gestión integral de leads para la industria de seguros de vida, con dashboards para administradores y agentes.",
     image: getStorageUrl("portfolio-images", "projects/project-001.png"),
-    technologies: ["React", "Next.js", "TailwindCSS", "Node.js", "PostgreSQL"],
+    technologies: ["React.js", "Next.js", "TailwindCSS", "Shadcn/ui"],
     githubUrl: null, // Proyecto privado
     demoUrl: "https://login.arialeads.com",
     gallery: [
@@ -78,18 +78,18 @@ export const professionalProjects = [
         "Modo claro/oscuro y diseño completamente responsivo",
       ],
       techStack:
-        "Frontend con React/Next.js y TailwindCSS para UI moderna. Backend con Node.js y PostgreSQL para gestión de datos a gran escala. Integración con APIs de geolocalización para mapa interactivo.",
+        "Frontend con React.js/Next.js y Shadcn con TailwindCSS para UI moderna. backend con Python para gestión de datos a gran escala. Integración con APIs de geolocalización para mapa interactivo.",
       challenges:
         "Desarrollar una plataforma escalable capaz de manejar decenas de miles de agentes y cientos de miles de leads, con dashboards diferenciados para administradores y agentes, manteniendo un rendimiento óptimo.",
     },
   },
   {
-    id: 101,
+    id: 2,
     title: "AireHub",
     description:
       "Plataforma integral para agentes de seguros con dashboard de métricas, sistema de logros, bootcamp de entrenamiento y gestión de carriers. Incluye integración con AriaLeads.",
     image: getStorageUrl("portfolio-images", "projects/airehub/dashboard.png"),
-    technologies: ["Next.js", "React", "shadcn/ui", "TailwindCSS"],
+    technologies: ["Next.js", "React.js", "shadcn/ui", "TailwindCSS"],
     githubUrl: null, // Proyecto privado
     demoUrl: "https://airehub-front-dev.up.railway.app",
     gallery: [
@@ -179,7 +179,7 @@ export const professionalProjects = [
         "Integración seamless con AriaLeads para gestión de leads",
       ],
       techStack:
-        "Next.js 14 con App Router para el frontend, React para componentes, shadcn/ui para sistema de diseño, TailwindCSS para estilos utility-first. Arquitectura modular con integración de microservicios.",
+        "Next.js 14 con App Router para el frontend, React.js para componentes, shadcn/ui para sistema de diseño, TailwindCSS para estilos utility-first. Arquitectura modular con integración de microservicios.",
       challenges:
         "Integrar AriaLeads como módulo dentro de AireHub manteniendo la coherencia de la UI, implementar el sistema de gamificación con badges y crear un bootcamp de entrenamiento con tracking de progreso.",
     },
