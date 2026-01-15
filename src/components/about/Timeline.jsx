@@ -68,8 +68,8 @@ function TimelineItem({ item, index, isLast }) {
           <span
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
               isCompleted
-                ? "bg-primary/10 text-primary"
-                : "bg-accent/10 text-accent-foreground"
+                ? "bg-sky-700/50 text-white"
+                : "bg-yellow-600/50 text-white"
             }`}
           >
             {isCompleted ? (
@@ -142,7 +142,7 @@ export function EducationTimeline({ className }) {
   return (
     <div className={className}>
       <div className="flex items-center gap-3 mb-6">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/50 text-white">
           <GraduationCap className="h-5 w-5" />
         </div>
         <div>
@@ -171,7 +171,7 @@ export function CertificationsSection({ className }) {
   return (
     <div className={className}>
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent-foreground">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/50 text-white">
           <BookOpen className="h-5 w-5" />
         </div>
         <div>
@@ -197,7 +197,7 @@ export function ExperienceSection({ className }) {
   return (
     <div className={className}>
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/50 text-white">
           <Briefcase className="h-5 w-5" />
         </div>
         <div>
