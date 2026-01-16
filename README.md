@@ -23,23 +23,28 @@ Portfolio web personal desarrollado con tecnologías modernas de React/Next.js q
 - **Diseño Moderno y Responsivo**: UI elegante con soporte completo para dispositivos móviles y desktop
 - **Tema Claro/Oscuro**: Sistema de temas con `next-themes` y persistencia de preferencias
 - **Animaciones Fluidas**: Transiciones suaves con Framer Motion
+- **Animaciones CSS Personalizadas**: Bordes giratorios con gradientes cónicos en la foto de perfil
 - **Optimización de Rendimiento**: Turbopack habilitado para desarrollo y build
 - **Manejo de Hidratación**: Hook personalizado para evitar mismatch SSR/Client
 - **Almacenamiento en la Nube**: Imágenes servidas desde Supabase Storage
-- **Formulario de Contacto Funcional**: Integración con Formspree
+- **Formulario de Contacto Funcional**: Integración con @formspree/react (validación y manejo de estado)
+- **Sistema de Notificaciones**: Toast notifications con Sonner
+- **Paleta de Colores Consistente**: Esquema sky-600/700 y yellow-600/700 en todo el proyecto
 - **Linting Moderno**: Configuración de Biome para código limpio
 
 ## Tecnologías
 
 ### Frontend
 
-| Tecnología    | Versión  | Descripción                       |
-| ------------- | -------- | --------------------------------- |
-| Next.js       | 15.5.9   | Framework de React con App Router |
-| React         | 19.1.0   | Biblioteca de UI                  |
-| TailwindCSS   | 4.0      | Framework de CSS utility-first    |
-| Framer Motion | 12.23.22 | Biblioteca de animaciones         |
-| Lucide React  | 0.544.0  | Iconos SVG                        |
+| Tecnología      | Versión  | Descripción                       |
+| --------------- | -------- | --------------------------------- |
+| Next.js         | 15.5.9   | Framework de React con App Router |
+| React           | 19.1.0   | Biblioteca de UI                  |
+| TailwindCSS     | 4.0      | Framework de CSS utility-first    |
+| Framer Motion   | 12.23.22 | Biblioteca de animaciones         |
+| Lucide React    | 0.544.0  | Iconos SVG                        |
+| Sonner          | latest   | Toast notifications               |
+| @formspree/react| latest   | Integración de formularios        |
 
 ### Backend & Servicios
 
@@ -90,7 +95,8 @@ portfolio-web/
 │   │   │   ├── profile.js        # Información personal
 │   │   │   ├── projectsData.js   # Proyectos profesionales y personales
 │   │   │   ├── technologies.js   # Stack tecnológico
-│   │   │   └── education.js      # Educación y experiencia
+│   │   │   |── education.js      # Educación y experiencia
+|   |   |   └── footer.js         # Información del footer
 │   │   ├── icons/                # Iconos de tecnologías personalizados
 │   │   ├── supabase.js           # Cliente y helpers de Supabase
 │   │   └── utils.js              # Utilidades (cn para clases)
@@ -183,7 +189,10 @@ Página principal con:
 
 Información personal completa:
 
-- Foto de perfil con badge de disponibilidad
+- Foto de perfil con bordes animados giratorios (conic-gradient)
+  - Borde exterior: sky/yellow rotando clockwise
+  - Borde interior: sky/yellow rotando counter-clockwise
+- Badge de disponibilidad animado
 - Nombre, título y ubicación
 - Biografía en múltiples párrafos
 - **TechStack**: Stack tecnológico organizado por categorías
@@ -223,7 +232,13 @@ Formulario de contacto funcional:
 
 - Información de contacto (email, teléfono, ubicación)
 - Mapa de Google Maps embebido
-- Formulario con validación (nombre, email, mensaje)
+- Formulario con validación usando `@formspree/react`
+  - Hook `useForm` para manejo de estado
+  - `ValidationError` para errores por campo
+  - Estado de éxito con mensaje de confirmación
+- Toast notifications personalizados:
+  - Éxito: fondo sky-blue (#0284c7)
+  - Error: fondo rojo (#dc2626)
 - Integración con Formspree para envío de emails
 
 ## Arquitectura
@@ -289,8 +304,8 @@ Framer Motion se utiliza para:
 **Kevin Andrés Bolaños**
 
 - Email: im.kevinbolanos.dev@gmail.com
-- LinkedIn: [linkedin.com/in/kevinbolanosdev](www.linkedin.com/in/kevinbolanosdev)
-- GitHub: [github.com/KevinBolanosDev](https://github.com/KevinBolanosDev)
+- LinkedIn: [https://www.linkedin.com/in/kevinbolanosdev](https://www.linkedin.com/in/kevinbolanosdev)
+- GitHub: [https://github.com/KevinBolanosDev](https://github.com/KevinBolanosDev)
 - Ubicación: Cali, Colombia
 
 ---
