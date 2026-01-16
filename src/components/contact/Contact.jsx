@@ -1,7 +1,9 @@
 "use client";
 
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { useForm, ValidationError } from "@formspree/react";
+import { CheckCircle, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,14 +11,9 @@ import { Textarea } from "@/components/ui/textarea";
 
 export function Contact() {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [state, handleSubmit] = useForm("xwpvvggb");
   const sectionRef = useRef(null);
+  const formRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,42 +32,37 @@ export function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
-    try {
-      const response = await fetch("https://formspree.io/f/xwpvvggb", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+  // Mostrar toast cuando el formulario se envía correctamente
+  useEffect(() => {
+    if (state.succeeded) {
+      toast.success("¡Mensaje enviado correctamente!", {
+        description: "Te responderé lo antes posible.",
+        style: {
+          background: "#0284c7",
+          color: "white",
+          border: "none",
         },
-        body: JSON.stringify(formData),
       });
-      if (!response.ok) {
-        throw new Error("Error al enviar el formulario");
+      // Reset form
+      if (formRef.current) {
+        formRef.current.reset();
       }
-      const result = await response.json();
-      console.log("Success:", result);
-      setStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Error:", error);
-      setStatus("error");
-      setErrorMessage(error.message || "Error al enviar el formulario");
     }
-  };
+  }, [state.succeeded]);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // Mostrar toast cuando hay errores
+  useEffect(() => {
+    if (state.errors && state.errors.length > 0) {
+      toast.error("Error al enviar el mensaje", {
+        description: "Por favor, verifica los campos e intenta nuevamente.",
+        style: {
+          background: "#dc2626",
+          color: "white",
+          border: "none",
+        },
+      });
+    }
+  }, [state.errors]);
 
   return (
     <section
@@ -168,7 +160,7 @@ export function Contact() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Mapa de ubicación de Cali, Valle del Cauca"
-                ></iframe>
+                />
               </div>
             </div>
 
@@ -179,85 +171,99 @@ export function Contact() {
                   : "opacity-0 translate-x-10"
               }`}
             >
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Nombre
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full"
-                    placeholder="Tu nombre completo"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full"
-                    placeholder="tu@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Mensaje
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    className="w-full resize-none"
-                    placeholder="Cuéntame sobre tu proyecto..."
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 transition-all duration-300 animate-glow disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <Send size={18} className="mr-2" />
-                  {status === "loading" ? "Enviando..." : "Enviar Mensaje"}
-                </Button>
-
-                {status === "success" && (
-                  <p className="text-sm text-green-500 text-center mt-4">
-                    ¡Mensaje enviado correctamente!
+              {state.succeeded ? (
+                <div className="flex flex-col items-center justify-center h-full text-center space-y-4 py-12">
+                  <div className="w-16 h-16 bg-sky-600 rounded-full flex items-center justify-center">
+                    <CheckCircle className="text-white" size={32} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">
+                    ¡Gracias por tu mensaje!
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Te responderé lo antes posible.
                   </p>
-                )}
+                </div>
+              ) : (
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
+                      Nombre
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      className="w-full"
+                      placeholder="Tu nombre completo"
+                    />
+                    <ValidationError
+                      prefix="Nombre"
+                      field="name"
+                      errors={state.errors}
+                      className="text-sm text-red-500 mt-1"
+                    />
+                  </div>
 
-                {status === "error" && (
-                  <p className="text-sm text-red-500 text-center mt-4">
-                    {errorMessage}
-                  </p>
-                )}
-              </form>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      className="w-full"
+                      placeholder="tu@email.com"
+                    />
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                      className="text-sm text-red-500 mt-1"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
+                      Mensaje
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={6}
+                      className="w-full resize-none"
+                      placeholder="Cuéntame sobre tu proyecto..."
+                    />
+                    <ValidationError
+                      prefix="Mensaje"
+                      field="message"
+                      errors={state.errors}
+                      className="text-sm text-red-500 mt-1"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={state.submitting}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 transition-all duration-300 animate-glow disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <Send size={18} className="mr-2" />
+                    {state.submitting ? "Enviando..." : "Enviar Mensaje"}
+                  </Button>
+                </form>
+              )}
             </div>
           </div>
         </div>
