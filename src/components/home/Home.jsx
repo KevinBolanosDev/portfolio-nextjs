@@ -42,9 +42,9 @@ export function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: isHydrated ? 1 : 0, y: isHydrated ? 0 : -20 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-primary/10 border border-primary/20 rounded-full text-sm text-primary backdrop-blur-sm"
+          className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-sky-600/10 border border-sky-600/20 rounded-full text-sm text-sky-600 backdrop-blur-sm"
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-4 h-4 text-sky-600" />
           <span className="font-medium">Disponible para proyectos</span>
         </motion.div>
 
@@ -68,9 +68,9 @@ export function Home() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 text-balance font-light"
         >
-          Desarrollador Full Stack especializado en Frontend ycrear{" "}
+          Desarrollador Full Stack especializado en Frontend y crear{" "}
           <span className="text-foreground font-medium">
-            experiencias web excepcionales
+            experiencias web modernas.
           </span>
         </motion.h2>
 
@@ -82,12 +82,12 @@ export function Home() {
           className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed text-pretty"
         >
           Transformo ideas en soluciones digitales robustas y escalables usando
-          <span className="text-primary font-medium">
+          <span className="text-sky-600 font-medium">
             {" "}
             React.js y Next.js
           </span>{" "}
           para el frontend,
-          <span className="text-primary font-medium"> Node.js</span> para el
+          <span className="text-sky-600 font-medium"> Node.js</span> para el
           backend, tecnologías de vanguardia.
         </motion.p>
 
@@ -101,12 +101,12 @@ export function Home() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex items-center justify-center gap-6 mb-12"
         >
-          <div className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors">
-            <Code2 className="w-5 h-5 text-primary" />
+          <div className="flex items-center gap-2 px-4 py-2 bg-card border-sky-600/40 border-2 rounded-lg hover:border-sky-700/70 hover:border-3 transition-colors">
+            <Code2 className="w-5 h-5 text-sky-600" />
             <span className="text-sm font-medium">Clean Code</span>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors">
-            <Rocket className="w-5 h-5 text-primary" />
+          <div className="flex items-center gap-2 px-4 py-2 bg-card border-yellow-600/40 border-2 rounded-lg hover:border-yellow-700/70 hover:border-3 transition-colors">
+            <Rocket className="w-5 h-5 text-yellow-600" />
             <span className="text-sm font-medium">Escalable</span>
           </div>
         </motion.div>
@@ -121,7 +121,7 @@ export function Home() {
           <Link href="/projects">
             <Button
               size="lg"
-              className="group px-8 py-6 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:scale-105"
+              className="group px-8 py-6 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 cursor-pointer"
             >
               Ver mis proyectos
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -132,7 +132,7 @@ export function Home() {
             <Button
               size="lg"
               variant="outline"
-              className="px-8 py-6 border-2 border-border text-foreground rounded-lg font-medium hover:bg-muted hover:border-primary/50 transition-all duration-300"
+              className="px-8 py-6 border-2 border-border text-foreground rounded-lg font-medium hover:bg-muted hover:border-primary/50 transition-all duration-300 cursor-pointer"
             >
               Sobre mí
             </Button>
@@ -142,7 +142,7 @@ export function Home() {
             <Button
               size="lg"
               variant="outline"
-              className="px-8 py-6 border-2 border-border text-foreground rounded-lg font-medium hover:bg-muted hover:border-primary/50 transition-all duration-300"
+              className="px-8 py-6 border-2 border-border text-foreground rounded-lg font-medium hover:bg-muted hover:border-primary/50 transition-all duration-300 cursor-pointer"
             >
               Contactar
             </Button>

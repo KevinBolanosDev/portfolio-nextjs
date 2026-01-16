@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
             <main className="flex flex-col flex-1">{children}</main>
             <Footer />
           </div>
+          <Toaster position="top-right" richColors />
         </ThemeProvider>
       </body>
     </html>

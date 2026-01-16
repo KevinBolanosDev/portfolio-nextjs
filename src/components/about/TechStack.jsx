@@ -8,7 +8,7 @@ export function TechStack({ className }) {
   return (
     <div className={className}>
       <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-primary" />
+        <span className="w-2 h-2 rounded-full bg-sky-600" />
         Stack Tecnológico
       </h3>
 
@@ -21,7 +21,7 @@ export function TechStack({ className }) {
             transition={{ duration: 0.3, delay: index * 0.05 }}
             className="group relative"
           >
-            <div className="flex flex-col items-center gap-2 p-3 rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 hover:bg-card transition-all duration-300">
+            <div className="flex flex-col items-center gap-2 p-3 rounded-xl border border-border/50 hover:border-primary/50 hover:bg-yellow-700/10 transition-all duration-300 bg-sky-700/10">
               <div
                 className="p-2 rounded-lg transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: `${tech.color}15` }}

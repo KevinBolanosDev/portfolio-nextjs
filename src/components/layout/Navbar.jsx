@@ -1,7 +1,7 @@
 "use client";
 
+import { Code2 } from "lucide-react";
 import { useEffect, useState } from "react";
-
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function Navbar() {
@@ -63,8 +63,8 @@ export function Navbar() {
                   >
                     <span className="relative z-10">{item.label}</span>
                     {/* Líneas verticales que se convierten en horizontales */}
-                    <span className="absolute left-0 top-0 w-0.5 h-full bg-primary opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:w-full group-hover:h-0.5" />
-                    <span className="absolute right-0 bottom-0 w-0.5 h-full bg-primary opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:w-full group-hover:h-0.5" />
+                    <span className="absolute left-0 top-0 w-0.5 h-full bg-sky-600 opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:w-full group-hover:h-0.5" />
+                    <span className="absolute right-0 bottom-0 w-0.5 h-full bg-sky-600 opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:w-full group-hover:h-0.5" />
                   </a>
                 </li>
               ))}
@@ -139,7 +139,7 @@ export function Navbar() {
                       : "0ms",
                   }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-primary/50" />
+                  <span className="w-2 h-2 rounded-full bg-sky-600/50" />
                   {item.label}
                 </a>
               </li>
@@ -153,9 +153,13 @@ export function Navbar() {
             }`}
             style={{ transitionDelay: isMenuOpen ? "400ms" : "0ms" }}
           >
-            <p className="text-xs text-muted-foreground text-center">
+            <div className="flex items-center justify-center gap-4">
+            <Code2 className="w-5 h-5 text-sky-600" />
+            <p className="text-base text-muted-foreground text-center">
               © {_currentYear} Kevin Bolaños
             </p>
+            <Code2 className="w-5 h-5 text-sky-600" />
+            </div>
           </div>
         </div>
       </div>
