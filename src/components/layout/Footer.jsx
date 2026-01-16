@@ -1,26 +1,9 @@
 "use client";
-import { Code, Github, Linkedin, Mail } from "lucide-react";
+import { Code } from "lucide-react";
+import { socialLinks } from "@/lib/data/footer";
 
 export function Footer() {
   const _currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      href: "https://github.com/tuusuario",
-      icon: Github,
-    },
-    {
-      name: "LinkedIn",
-      href: "https://linkedin.com/in/tuusuario",
-      icon: Linkedin,
-    },
-    {
-      name: "Email",
-      href: "mailto:tu@email.com",
-      icon: Mail,
-    },
-  ];
 
   return (
     <footer className="h-[80px] border-t border-border/40 bg-background/80 backdrop-blur-sm">
@@ -28,9 +11,9 @@ export function Footer() {
         <div className="flex flex-col items-center justify-center gap-2 md:gap-10 md:flex-row">
           {/* Logo/Brand */}
           <div className="flex items-center gap-3 text-lg">
-            <Code className="h-5 w-5 text-primary" />
+            <Code className="h-5 w-5 text-sky-600" />
             <span className="font-medium">Kevin Bolaños</span>
-            <Code className="h-5 w-5 text-primary" />
+            <Code className="h-5 w-5 text-sky-600" />
           </div>
 
           {/* Social Links */}
@@ -46,7 +29,7 @@ export function Footer() {
                   className="group rounded-full p-2 transition-all hover:bg-accent"
                   aria-label={link.name}
                 >
-                  <Icon className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
+                  <Icon className="h-5 w-5 text-sky-600 transition-colors group-hover:text-yellow-600" />
                 </a>
               );
             })}

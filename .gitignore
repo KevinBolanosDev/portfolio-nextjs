@@ -13,7 +13,7 @@
 .vscode/settings.json
 
 # documents
-/SUPABASE_STORAGE_STRUCTURE.md
+SUPABASE_STORAGE_STRUCTURE.md
 CLAUDE.md
 
 # testing

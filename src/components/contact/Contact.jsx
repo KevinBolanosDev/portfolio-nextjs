@@ -10,10 +10,12 @@ import { Textarea } from "@/components/ui/textarea";
 export function Contact() {
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
-    // name: "",
+    name: "",
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -35,15 +37,32 @@ export function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //TODO: https://formspree.io/f/xwpvvggb
-    const form = new FormData(e.target);
-    const data = Object.fromEntries(form);
-    console.log("Form submitted:", data);
-    const response = await fetch("https://formspree.io/f/xwpvvggb", {
-      method: "POST",
-      body: form,
-    });
-    console.log("Response:", response);
+    setStatus("loading");
+    setErrorMessage("");
+    try {
+      const response = await fetch("https://formspree.io/f/xwpvvggb", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Error al enviar el formulario");
+      }
+      const result = await response.json();
+      console.log("Success:", result);
+      setStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus("error");
+      setErrorMessage(error.message || "Error al enviar el formulario");
+    }
   };
 
   const handleChange = (e) => {
@@ -62,7 +81,7 @@ export function Contact() {
       {/* Gradiente de fondo animado */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-300/20 via-background to-blue-300/20" />
 
-      <div className="relative z-10 w-6xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div
           className={`transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -124,7 +143,7 @@ export function Contact() {
                 </a>
 
                 <a
-                  href="https://maps.app.goo.gl/WkcpvF8brXH5zV3YA"
+                  href="https://www.google.com/maps/place/Cali,+Valle+del+Cauca/@3.3977688,-76.5222662,13.99z/data=!4m6!3m5!1s0x8e30a6f0cc4bb3f1:0x1f0fb5e952ae6168!8m2!3d3.4516467!4d-76.5319854!16zL20vMDFwc3Nm?hl=es&entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -134,7 +153,7 @@ export function Contact() {
                     </div>
                     <div>
                       <p className="text-foreground font-medium">Ubicación</p>
-                      <p className="text-muted-foreground">Colombia</p>
+                      <p className="text-muted-foreground">Cali, Colombia</p>
                     </div>
                   </div>
                 </a>
@@ -220,11 +239,24 @@ export function Contact() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 transition-all duration-300 animate-glow"
+                  disabled={status === "loading"}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 transition-all duration-300 animate-glow disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={18} className="mr-2" />
-                  Enviar Mensaje
+                  {status === "loading" ? "Enviando..." : "Enviar Mensaje"}
                 </Button>
+
+                {status === "success" && (
+                  <p className="text-sm text-green-500 text-center mt-4">
+                    ¡Mensaje enviado correctamente!
+                  </p>
+                )}
+
+                {status === "error" && (
+                  <p className="text-sm text-red-500 text-center mt-4">
+                    {errorMessage}
+                  </p>
+                )}
               </form>
             </div>
           </div>

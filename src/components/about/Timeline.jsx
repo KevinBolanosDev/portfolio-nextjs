@@ -111,7 +111,7 @@ function CertificationCard({ cert, index }) {
       className="group flex items-center justify-between p-3 rounded-lg bg-card/50 border border-border/50 hover:border-primary/30 hover:bg-card transition-all"
     >
       <div className="flex items-center gap-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-600/20 text-sky-600">
           <Award className="h-4 w-4" />
         </div>
         <div>
