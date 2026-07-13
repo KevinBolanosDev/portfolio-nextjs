@@ -290,3 +290,378 @@ html {
 .animate-reverse-spin {
   animation: reverse-spin 8s linear infinite;
 }
+
+/* ============================================================
+   AI-OS Design System v3 — Workflow (Glassmorphism Gaming)
+   Tokens y utilities con prefijo wf- para no colisionar con
+   el sistema de temas existente. La experiencia workflow del
+   home es dark-only y usa estos valores directamente.
+   ============================================================ */
+:root {
+  --wf-void: #050a18;
+  --wf-panel: #0f1a2e;
+  --wf-elevated: #162240;
+  --wf-glass-bg: rgba(15, 26, 46, 0.4);
+  --wf-glass-bg-strong: rgba(15, 26, 46, 0.78);
+  --wf-glass-border: rgba(76, 139, 245, 0.15);
+  --wf-glass-border-hover: rgba(76, 139, 245, 0.4);
+  --wf-glass-highlight: rgba(255, 255, 255, 0.05);
+  --wf-primary: #4c8bf5;
+  --wf-primary-light: #7cb0ff;
+  --wf-primary-dark: #2d6ae0;
+  --wf-secondary: #38bdf8;
+  --wf-tertiary: #818cf8;
+  --wf-success: #34d399;
+  --wf-warning: #fbbf24;
+  --wf-danger: #f87171;
+  --wf-text: #eff4ff;
+  --wf-text-secondary: #94a3c8;
+  --wf-text-muted: #5b6a8a;
+}
+
+.wf-font-display {
+  font-family: var(--font-space-grotesk), var(--font-inter), system-ui,
+    sans-serif;
+}
+
+.wf-font-mono {
+  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular,
+    Consolas, monospace;
+}
+
+/* Vidrio básico */
+.wf-glass {
+  background: var(--wf-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--wf-glass-border);
+}
+
+/* Card de vidrio: gradiente diagonal + sombra + inset highlight */
+.wf-glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 26, 46, 0.6) 0%,
+    rgba(22, 34, 64, 0.4) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(76, 139, 245, 0.2);
+  border-radius: 1rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 var(--wf-glass-highlight);
+}
+
+.wf-glass-card-hover {
+  transition:
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wf-glass-card-hover:hover {
+  border-color: var(--wf-glass-border-hover);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(76, 139, 245, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Vidrio opaco para modales */
+.wf-glass-strong {
+  background: var(--wf-glass-bg-strong);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(76, 139, 245, 0.25);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Glow neón por color */
+.wf-glow-primary {
+  box-shadow:
+    0 0 20px rgba(76, 139, 245, 0.35),
+    0 0 40px rgba(76, 139, 245, 0.15);
+}
+
+.wf-glow-secondary {
+  box-shadow:
+    0 0 20px rgba(56, 189, 248, 0.35),
+    0 0 40px rgba(56, 189, 248, 0.15);
+}
+
+.wf-glow-success {
+  box-shadow:
+    0 0 20px rgba(52, 211, 153, 0.35),
+    0 0 40px rgba(52, 211, 153, 0.15);
+}
+
+/* Título hero con gradiente */
+.wf-text-gradient {
+  background: linear-gradient(135deg, #eff4ff 0%, #7cb0ff 50%, #4c8bf5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Patrón de puntos para el canvas del workflow */
+.wf-dot-pattern {
+  background-image: radial-gradient(
+    rgba(30, 48, 85, 0.5) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* Borde con gradiente rotatorio — el efecto signature del v3.
+   En navegadores sin @property el ángulo queda fijo (fallback estático). */
+@property --wf-gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.wf-gradient-border {
+  position: relative;
+}
+
+.wf-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--wf-gradient-angle),
+    #4c8bf5,
+    #38bdf8,
+    #818cf8,
+    #4c8bf5
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: wf-gradient-rotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes wf-gradient-rotate {
+  to {
+    --wf-gradient-angle: 360deg;
+  }
+}
+
+/* Pulso de glow para nodos activos */
+@keyframes wf-pulse-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.wf-pulse-glow {
+  animation: wf-pulse-glow 2s ease-in-out infinite;
+}
+
+/* Flujo de datos en edges SVG */
+@keyframes wf-data-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.wf-data-flow {
+  animation: wf-data-flow 0.8s linear infinite;
+}
+
+/* Shimmer: brillo diagonal para elementos en ejecución */
+@keyframes wf-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.wf-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.wf-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  animation: wf-shimmer 2s infinite;
+  pointer-events: none;
+}
+
+/* Marquee horizontal infinito (galería de proyectos) */
+@keyframes wf-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.wf-marquee-track {
+  animation: wf-marquee 40s linear infinite;
+  will-change: transform;
+}
+
+/* Pausa el desplazamiento al pasar el cursor por encima */
+.wf-marquee:hover .wf-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Difuminado en los bordes para un corte suave */
+.wf-marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+
+/* El marquee es una función solicitada explícitamente (carrusel
+   automático), por eso no se desactiva con prefers-reduced-motion.
+   El usuario puede pausarlo pasando el cursor por encima. */
+
+/* Drift lento del mesh de gradientes (solo home/landing) */
+@keyframes wf-mesh-drift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(2%, 1%, 0) scale(1.06);
+  }
+}
+
+.wf-mesh {
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      rgba(76, 139, 245, 0.15),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 100% 100%,
+      rgba(129, 140, 248, 0.08),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 0% 80%,
+      rgba(56, 189, 248, 0.07),
+      transparent
+    );
+  animation: wf-mesh-drift 20s ease-in-out infinite alternate;
+}
+
+/* Ola neón del footer: la franja mide 200% de ancho y se desplaza
+   la mitad de su ancho en loop para un scroll infinito sin saltos */
+@keyframes wf-wave {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.wf-wave {
+  animation: wf-wave 14s linear infinite;
+}
+
+.wf-wave-slow {
+  animation: wf-wave 22s linear infinite reverse;
+}
+
+/* Llama del propulsor de las naves: parpadeo rápido de escala
+   horizontal con origen en la cola de la nave */
+@keyframes wf-flame {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scaleX(1.45);
+    opacity: 0.5;
+  }
+}
+
+.wf-flame {
+  animation: wf-flame 0.22s ease-in-out infinite;
+  transform-origin: 100% 50%;
+}
+
+.wf-flame-fast {
+  animation: wf-flame 0.14s ease-in-out infinite;
+  transform-origin: 100% 50%;
+}
+
+/* Parpadeo de estrellas */
+@keyframes wf-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.wf-twinkle {
+  animation: wf-twinkle 4s ease-in-out infinite;
+}
+
+.wf-twinkle-delayed {
+  animation: wf-twinkle 6s ease-in-out 2s infinite;
+}
+
+/* Accesibilidad: desactivar animaciones ambientales */
+@media (prefers-reduced-motion: reduce) {
+  .wf-gradient-border::before,
+  .wf-shimmer::after,
+  .wf-mesh,
+  .wf-data-flow,
+  .wf-pulse-glow,
+  .wf-twinkle,
+  .wf-twinkle-delayed,
+  .wf-wave,
+  .wf-wave-slow,
+  .wf-flame,
+  .wf-flame-fast {
+    animation: none;
+  }
+}
