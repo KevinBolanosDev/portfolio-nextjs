@@ -29,17 +29,17 @@ export const workflowSections = [
   {
     id: "about",
     step: 1,
-    title: "About me",
-    slug: "node/about-me",
+    title: "Acerca de mí",
+    slug: "node/acerca-de-mi",
     icon: "user",
     color: "#C084FC",
     colorDark: "#9333EA",
     glow: "rgba(192, 132, 252, 0.35)",
     duration: 2400,
     summary:
-      "Desarrollador full stack de Cali, Colombia, apasionado por crear soluciones digitales innovadoras con un enfoque proactivo y en constante aprendizaje.",
+      "Desarrollador full stack de Candelaria, Valle del Cauca, Colombia, apasionado por crear soluciones digitales innovadoras con un enfoque proactivo y en constante aprendizaje.",
     logs: [
-      "Inicializando módulo about-me…",
+      "Inicializando módulo acerca-de-mi…",
       "Cargando perfil profesional…",
       "Compilando trayectoria…",
     ],
@@ -47,8 +47,8 @@ export const workflowSections = [
   {
     id: "skills",
     step: 2,
-    title: "Skills & Experience",
-    slug: "node/skills-experience",
+    title: "Habilidades & Experiencia",
+    slug: "node/habilidades",
     icon: "code",
     color: "#A3E635",
     colorDark: "#65A30D",
@@ -65,8 +65,8 @@ export const workflowSections = [
   {
     id: "projects",
     step: 3,
-    title: "Projects",
-    slug: "node/projects",
+    title: "Proyectos",
+    slug: "node/proyectos",
     icon: "rocket",
     color: "#2DD4BF",
     colorDark: "#0D9488",
@@ -83,8 +83,8 @@ export const workflowSections = [
   {
     id: "contact",
     step: 4,
-    title: "Contact",
-    slug: "node/contact",
+    title: "Contacto",
+    slug: "node/contacto",
     icon: "mail",
     color: "#38BDF8",
     colorDark: "#0284C7",
@@ -107,7 +107,7 @@ export const workflowSections = [
 export const completeStep = {
   id: "complete",
   title: "Workflow completado",
-  slug: "node/complete",
+  slug: "node/completado",
   color: "#34D399",
   colorDark: "#059669",
   glow: "rgba(52, 211, 153, 0.35)",
