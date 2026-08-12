@@ -1,7 +1,7 @@
-import { Contact } from "@/components/contact/Contact";
+import { redirect } from "next/navigation";
 
-function ContactPage() {
-  return <Contact />;
+// El contenido de esta vista ahora vive en el modal "Contact"
+// del workflow del home.
+export default function ContactPage() {
+  redirect("/home");
 }
-
-export default ContactPage;

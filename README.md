@@ -115,7 +115,7 @@ portfolio-web/
 ### Prerrequisitos
 
 - Node.js 18.0 o superior
-- npm, pnpm o yarn
+- pnpm 10 (ver campo `packageManager` en package.json)
 
 ### Pasos
 
@@ -129,8 +129,6 @@ cd portfolio-web
 2. **Instalar dependencias**
 
 ```bash
-npm install
-# o
 pnpm install
 ```
 
@@ -143,7 +141,7 @@ cp .env.example .env.local
 4. **Iniciar servidor de desarrollo**
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 5. **Abrir en el navegador**
@@ -164,13 +162,13 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key
 
 ## Scripts Disponibles
 
-| Script   | Comando          | Descripción                                 |
-| -------- | ---------------- | ------------------------------------------- |
-| `dev`    | `npm run dev`    | Inicia servidor de desarrollo con Turbopack |
-| `build`  | `npm run build`  | Genera build de producción                  |
-| `start`  | `npm run start`  | Inicia servidor de producción               |
-| `lint`   | `npm run lint`   | Ejecuta Biome para verificar código         |
-| `format` | `npm run format` | Formatea código con Biome                   |
+| Script   | Comando        | Descripción                                 |
+| -------- | -------------- | -------------------------------------------- |
+| `dev`    | `pnpm dev`     | Inicia servidor de desarrollo con Turbopack |
+| `build`  | `pnpm build`   | Genera build de producción                  |
+| `start`  | `pnpm start`   | Inicia servidor de producción               |
+| `lint`   | `pnpm lint`    | Ejecuta Biome para verificar código         |
+| `format` | `pnpm format`  | Formatea código con Biome                   |
 
 ## Secciones del Portfolio
 

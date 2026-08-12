@@ -1,47 +1,76 @@
 "use client";
-import { Code } from "lucide-react";
-import { socialLinks } from "@/lib/data/footer";
+import { LanguageToggle } from "@/components/ui/language-toggle";
+import { getSocialLinks } from "@/lib/data/footer";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+
+/**
+ * Path de ola tileable (viewBox 1440x90): termina a la misma altura
+ * en la que empieza, así el <use> duplicado encaja sin saltos.
+ */
+const WAVE_PATH =
+  "M0 45 C 120 15, 240 15, 360 45 S 600 75, 720 45 S 960 15, 1080 45 S 1320 75, 1440 45 L 1440 90 L 0 90 Z";
+
+function WaveLayer({ className, color, opacity }) {
+  return (
+    <div className={`absolute inset-x-0 bottom-0 h-full w-[200%] ${className}`}>
+      <svg
+        aria-hidden="true"
+        className="h-full w-full"
+        viewBox="0 0 2880 90"
+        preserveAspectRatio="none"
+        fill={color}
+        fillOpacity={opacity}
+      >
+        <path d={WAVE_PATH} />
+        <path d={WAVE_PATH} transform="translate(1440 0)" />
+      </svg>
+    </div>
+  );
+}
 
 export function Footer() {
-  const _currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
+  const socialLinks = getSocialLinks({
+    mailSubject: t("footer.mailSubject"),
+    mailBody: t("footer.mailBody"),
+  });
 
   return (
-    <footer className="h-[80px] border-t border-border/40 bg-background/80 backdrop-blur-sm">
-      <div className=" container mx-auto px-4 py-4">
-        <div className="flex flex-col items-center justify-center gap-2 md:gap-10 md:flex-row">
-          {/* Logo/Brand */}
-          <div className="flex items-center gap-3 text-lg">
-            <Code className="h-5 w-5 text-sky-600" />
-            <span className="font-medium">Kevin Bolaños</span>
-            <Code className="h-5 w-5 text-sky-600" />
-          </div>
+    <footer className="relative overflow-hidden border-t border-[rgba(76,139,245,0.15)] bg-[rgba(15,26,46,0.45)] backdrop-blur-[20px]">
+      {/* Olas neón animadas de fondo */}
+      <div aria-hidden="true" className="absolute inset-0">
+        <WaveLayer className="wf-wave-slow" color="#818CF8" opacity="0.12" />
+        <WaveLayer className="wf-wave" color="#38BDF8" opacity="0.14" />
+        {/* Velo para garantizar la legibilidad del texto sobre las olas */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050A18]/60 via-transparent to-[#050A18]/40" />
+      </div>
 
-          {/* Social Links */}
-          <div className="flex text-base items-center gap-4">
-            {socialLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group rounded-full p-2 transition-all hover:bg-accent"
-                  aria-label={link.name}
-                >
-                  <Icon className="h-5 w-5 text-sky-600 transition-colors group-hover:text-yellow-600" />
-                </a>
-              );
-            })}
-          </div>
+      <div className="relative z-10 mx-auto flex flex-col items-center gap-3 px-4 py-6">
+        {/* Redes sociales + idioma */}
+        <div className="flex items-center gap-4">
+          {socialLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.name}
+                className="wf-glass group rounded-full p-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(76,139,245,0.4)] hover:shadow-[0_0_16px_rgba(56,189,248,0.3)]"
+              >
+                <Icon className="h-5 w-5 text-[#94A3C8] transition-colors group-hover:text-[#7CB0FF]" />
+              </a>
+            );
+          })}
+          <LanguageToggle />
         </div>
 
-        {/* Optional: Tech stack badge */}
-        <div className="flex justify-center mx-auto mt-2">
-          <p className="text-sm sm:text-lg text-muted-foreground/60">
-            Copyright © {_currentYear} Todos los derechos reservados.
-          </p>
-        </div>
+        {/* Copyright */}
+        <p className="wf-font-mono text-xs text-[#94A3C8]">
+          {t("footer.rights", currentYear)}
+        </p>
       </div>
     </footer>
   );
