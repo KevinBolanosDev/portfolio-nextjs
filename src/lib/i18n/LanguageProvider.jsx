@@ -15,7 +15,20 @@ const LanguageContext = createContext(null);
 
 function persistLocale(locale) {
   try {
-    document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=31536000; SameSite=Lax`;
+    if (typeof window !== "undefined" && "cookieStore" in window) {
+      window.cookieStore
+        .set({
+          name: LOCALE_COOKIE,
+          value: locale,
+          path: "/",
+          expires: Date.now() + 31536000 * 1000,
+          sameSite: "lax",
+        })
+        .catch(() => {});
+    } else {
+      // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API is unsupported in Safari/Firefox — documented fallback.
+      document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=31536000; SameSite=Lax`;
+    }
     window.localStorage.setItem(LOCALE_COOKIE, locale);
   } catch {
     // storage no disponible: la preferencia solo dura la sesión

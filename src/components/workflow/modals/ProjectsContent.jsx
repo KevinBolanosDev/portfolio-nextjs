@@ -59,7 +59,11 @@ function ProjectNode({ project, index, scrollRef, onOpen }) {
             src={project.image}
             alt={project.title}
             fill
-            sizes="(max-width: 768px) 100vw, 512px"
+            quality={90}
+            // +12% para compensar el scale(1.12) del parallax: sin esto
+            // el navegador pide una imagen del tamaño "en reposo" y el
+            // zoom permanente la ve borrosa.
+            sizes="(max-width: 768px) 112vw, 574px"
             className="object-cover"
           />
         </motion.div>

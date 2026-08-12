@@ -348,6 +348,7 @@ function DetailBody({ project, onClose }) {
                           src={item.src}
                           alt={item.title}
                           fill
+                          quality={90}
                           sizes={isMobile ? "160px" : "360px"}
                           className={`transition-transform duration-500 group-hover/slide:scale-105 ${
                             isMobile
