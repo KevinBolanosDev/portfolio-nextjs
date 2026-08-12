@@ -312,6 +312,137 @@ const enProfessionalProjectsText = {
         "Designing complex multi-step flows with draft persistence, dual client/server validation, seamless integration with Gmail and Google Calendar, and multi-tenant support with JWT-based headers.",
     },
   },
+  4: {
+    description:
+      "AI-OS is a platform that turns a text prompt into a fully functional Next.js application end to end: an LLM agent pipeline (LangChain + LangGraph) plans, generates files, installs dependencies, verifies the build, and serves a live preview inside a real Docker sandbox — all streamed in real time to an IDE-style cockpit with an execution graph, editor, terminal, and per-agent chat.",
+    gallery: [
+      {
+        title: "Orchestration Graph (DAG)",
+        description:
+          "Interactive visualization of the connected agent pipeline (@xyflow/react), with live states — idle, thinking, executing, done, error — streamed over WebSocket.",
+      },
+      {
+        title: "Agents View",
+        description:
+          "Agent creation wizard with templates, LLM model/provider selection, and spec levels (system/balanced/free) to control autonomy.",
+      },
+      {
+        title: "Tools and Sandbox",
+        description:
+          "Panel of executable tools and MCPs, with a real Docker container sandbox (dockerode) and OAuth integrations for publishing to GitHub.",
+      },
+      {
+        title: "Completed Run with Auto-Verification",
+        description:
+          "Result of a finished run: automatic build verification and a self-correction loop that reconciles missing dependencies without manual intervention.",
+      },
+      {
+        title: "IDE Shell + Chat Dock",
+        description:
+          "IDE-style cockpit with file explorer, Monaco editor, xterm.js terminal, and a ChatDock with a persistent per-agent transcript, detachable into its own window.",
+      },
+      {
+        title: "Result: App Generated from a Prompt",
+        description:
+          "Live preview of a complete Next.js application, generated end to end by the agent pipeline from a single prompt.",
+      },
+      {
+        title: "Result: Generated App — Additional View",
+        description:
+          "Another view of the generated application, showing a functional, navigable interface ready to use, with no manual editing afterward.",
+      },
+    ],
+    documentation: {
+      overview:
+        "AI-OS is an agentic system that takes a text prompt and produces a fully running Next.js application end to end: an LLM generates a structured plan, an agent pipeline writes files to disk, installs dependencies, verifies the build, and serves a live preview — all streamed in real time to a web cockpit through a Zod-validated WebSocket event bus.",
+      features: [
+        "Agent pipeline orchestrated with LangGraph + LangChain (planner → file generator → verifier → self-correction loop) on top of Claude, with multi-provider support (OpenAI, DeepSeek) configurable per user.",
+        "Real-time event bus over WebSocket with a shared Zod schema (`AgentEvent`, 18 types) between the Fastify backend and the Next.js cockpit: agent states, logs, tool calls, and file progress.",
+        "Interactive execution graph (@xyflow/react) that visualizes the connected agent DAG, with automatic build verification and an auto-fix loop on failures.",
+        "Real Docker container sandbox (dockerode) to install dependencies, build, and serve a live preview of the generated app, with automatic reconciliation of missing dependencies detected via import parsing.",
+        "Multi-tenant authentication with NextAuth.js (Auth.js v5) and a JWT bridge to Fastify, with per-user project and event isolation.",
+        "Custom IDE shell: Monaco editor, xterm.js terminal, file explorer, and a ChatDock with a persistent per-agent transcript, detachable into a standalone window, animated with GSAP.",
+      ],
+      techStack:
+        "Frontend with React 19 and Next.js 16 (App Router), Tailwind CSS 4 and Radix UI with custom components (class-variance-authority), Zustand for client state, Recharts for metrics, GSAP and Framer Motion for animation, and Monaco Editor + xterm.js + @xyflow/react embedded for the IDE shell. Backend with Fastify and WebSocket, Prisma over PostgreSQL, Redis (ioredis) for state/queues, LangChain + LangGraph orchestrating calls to Anthropic Claude (and alternative providers), Zod validating the end-to-end event contract, and Dockerode for container sandboxing. Monorepo with pnpm workspaces + Turborepo and a shared `@aios/shared` package.",
+      challenges:
+        "Designing a single, typed event bus (Zod discriminated union) to serve as the contract between an asynchronous agent backend and a real-time React cockpit, without state desync. Orchestrating multiple LLM agents with different autonomy levels (spec levels) without drifting from the generated plan. Building a verification + auto-fix loop capable of detecting broken builds, reconciling missing dependencies, and retrying without human intervention. Isolating each generated project in a real Docker sandbox with dynamic ports, serving a live preview without blocking the rest of the system. Migrating authentication to multi-tenant while preserving per-user WebSocket filtering without breaking in-progress runs.",
+    },
+  },
+  5: {
+    description:
+      "Comprehensive daily-collections management platform with centralized control over clients, credits, collection routes, and a client portal. Multi-role system with a mobile-first design to maximize usability in the field.",
+    gallery: [
+      {
+        title: "Admin Dashboard",
+        description:
+          "Centralized panel with weekly collection KPIs, route-based revenue analysis, delinquent client status, and real-time statistics. Trend visualization with interactive charts and quick access to priority routes.",
+      },
+      {
+        title: "Client Management",
+        description:
+          "Complete client listing with filtering by route and status. Quick view of outstanding balance, last collection, and available actions. Mobile-first optimized search to locate clients in the field without lag.",
+      },
+      {
+        title: "Client Detail and Documents",
+        description:
+          "Complete client profile with personal data, ID documents (front/back with signed URLs), credit history, debt summary, and reactivation options. Interface for secure editing with real-time validation.",
+      },
+      {
+        title: "Credit Schedule",
+        description:
+          "Complete installment breakdown (daily/weekly/monthly) with individual status, dynamically calculated due dates, per-installment amount, and applied interest. Delinquency visualization and options to void or edit credits (admin only).",
+      },
+      {
+        title: "Daily Route Closure",
+        description:
+          "Live preview of the day's collections and an atomic closure transaction. Immutable snapshot capturing paid/unpaid clients, total collected, new credits, and a downloadable PDF. Idempotency guaranteed at the DB level (one closure per day).",
+      },
+      {
+        title: "Routes and Collections Panel",
+        description:
+          "Operational view of all routes assigned to collectors with a live status of the day's progress, visited clients, amount collected, and upcoming visits. Direct access to daily closure and route-based collection history.",
+      },
+      {
+        title: "Route Detail and Assigned Clients",
+        description:
+          "Detailed route view with the list of assigned clients, responsible collector, collection statistics, and management options. Lets you see each client on the route, their debt, last collection, and delinquency status in a single view.",
+      },
+      {
+        title: "Theme System (Light/Dark)",
+        description:
+          "Per-surface mode selector: Admin dark by default, Collector light for the field, Client light for the portal. FOUC-free transition, CSS tokens with WCAG AA contrast, respects prefers-reduced-motion. Preference saved per user.",
+      },
+      {
+        title: "Interactive Digital Receipt",
+        description:
+          "Server-rendered payment receipt with a unique code, client data, credit, paid installment, and amount. Downloadable as PDF or shareable via WhatsApp with a signed link. Accessible without login via a capability URL.",
+      },
+    ],
+    documentation: {
+      overview:
+        "CobroDiario is a SaaS platform specialized in daily-collections management for microcredit and finance companies. It centralizes client administration, route assignment to collectors, credit and payment tracking, and offers a secure portal where clients can check their debt and download receipts. Multi-role system with JWT authentication and end-to-end validation with Zod.",
+      features: [
+        "Centralized client management with document capture (front/back photos)",
+        "Collection route system assigned to specific collectors",
+        "Credit creation and tracking with automatic installment calculation",
+        "Payment recording with atomic transactions and race-condition control",
+        "Due-date schedule with delinquency tracking",
+        "Digital receipt generation with electronic signature",
+        "Client portal with secure access and mandatory password change",
+        "Payment voiding (never editing) for corrections",
+        "Reactivation of deactivated clients (soft-delete)",
+        "Fully responsive, mobile-first design",
+        "Multi-role authentication with guards and granular permissions",
+        "Secure document storage with signed URLs",
+        "Rate limiting and attack protection",
+      ],
+      techStack:
+        "Frontend: Next.js 16 with App Router, React 19, TypeScript, TailwindCSS v4 with a custom design system, GSAP for animations, Zod for validation, TanStack Query for data fetching, Zustand for state. Backend: NestJS with feature-based modules, Prisma v7 with PostgreSQL, JWT for authentication, shared validation with Zod in @repo/types. Infrastructure: Supabase for database and storage, Turborepo for the monorepo, pnpm for dependency management.",
+      challenges:
+        "Implementing atomic transactions with race-condition control on payments, designing dual client/server validation shared between web and API, building an installment schedule that supports variable frequencies (daily/weekly/monthly), managing stateless authentication with soft-delete and reactivations, optimizing a mobile-first interface for collectors in the field without reliable connectivity, and implementing soft-deletes and auditing without compromising performance.",
+    },
+  },
 };
 
 const enPersonalProjectsText = {
