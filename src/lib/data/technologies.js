@@ -8,7 +8,7 @@
  * @property {string} name - Nombre de la tecnología
  * @property {string} color - Color hex de la marca
  * @property {string} icon - Identificador del icono
- * @property {'frontend' | 'backend' | 'database' | 'tools' | 'devops'} category - Categoría
+ * @property {'frontend' | 'backend' | 'database' | 'devops' | 'ai' | 'tools'} category - Categoría
  */
 
 /**
@@ -37,6 +37,13 @@ export const frontendTech = [
     icon: "tailwindcss",
     category: "frontend",
   },
+  {
+    name: "React Native",
+    color: "#61DAFB",
+    icon: "react",
+    category: "frontend",
+  },
+  { name: "Expo Go", color: "#4630EB", icon: "expo", category: "frontend" },
 ];
 
 /**
@@ -45,6 +52,13 @@ export const frontendTech = [
 export const backendTech = [
   { name: "Node.js", color: "#339933", icon: "nodejs", category: "backend" },
   { name: "Express", color: "#000000", icon: "express", category: "backend" },
+  { name: "NestJS", color: "#E0234E", icon: "nestjs", category: "backend" },
+  {
+    name: "Supabase",
+    color: "#3FCF8E",
+    icon: "supabase",
+    category: "backend",
+  },
 ];
 
 /**
@@ -61,12 +75,47 @@ export const databaseTech = [
 ];
 
 /**
- * Herramientas de desarrollo
+ * Despliegue / infraestructura (CI/CD, hosting, contenedores)
+ */
+export const devopsTech = [
+  { name: "Docker", color: "#2496ED", icon: "docker", category: "devops" },
+  { name: "Vercel", color: "#FFFFFF", icon: "vercel", category: "devops" },
+  { name: "Railway", color: "#D3D3D3", icon: "railway", category: "devops" },
+  { name: "Render", color: "#46E3B7", icon: "render", category: "devops" },
+  { name: "Netlify", color: "#00C7B7", icon: "netlify", category: "devops" },
+];
+
+/**
+ * Herramientas y asistentes de IA
+ */
+export const aiTech = [
+  {
+    name: "Antigravity",
+    color: "#4285F4",
+    icon: "antigravity",
+    category: "ai",
+  },
+  { name: "Cursor", color: "#FFFFFF", icon: "cursor", category: "ai" },
+  {
+    name: "Claude Code",
+    color: "#D97757",
+    icon: "claude",
+    category: "ai",
+  },
+  { name: "Claude", color: "#D97757", icon: "claude", category: "ai" },
+  { name: "ChatGPT", color: "#10A37F", icon: "chatgpt", category: "ai" },
+  { name: "MiniMax", color: "#E73562", icon: "minimax", category: "ai" },
+  { name: "DeepSeek", color: "#5786FE", icon: "deepseek", category: "ai" },
+];
+
+/**
+ * Herramientas de desarrollo (control de versiones, editor, testing de APIs)
  */
 export const toolsTech = [
   { name: "Git", color: "#F05032", icon: "git", category: "tools" },
   { name: "GitHub", color: "#181717", icon: "github", category: "tools" },
   { name: "VS Code", color: "#007ACC", icon: "vscode", category: "tools" },
+  { name: "Postman", color: "#FF6C37", icon: "postman", category: "tools" },
 ];
 
 /**
@@ -76,6 +125,8 @@ export const technologies = {
   frontend: frontendTech,
   backend: backendTech,
   database: databaseTech,
+  devops: devopsTech,
+  ai: aiTech,
   tools: toolsTech,
 };
 
@@ -86,6 +137,8 @@ export const allTechnologies = [
   ...frontendTech,
   ...backendTech,
   ...databaseTech,
+  ...devopsTech,
+  ...aiTech,
   ...toolsTech,
 ];
 

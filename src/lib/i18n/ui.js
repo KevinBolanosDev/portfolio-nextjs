@@ -56,6 +56,12 @@ export const ui = {
       statusInProgress: "En curso",
       viewCertificate: "Ver certificado",
       viewCertificateAria: (title) => `Ver certificado: ${title}`,
+      categoryFrontend: "Frontend",
+      categoryBackend: "Backend",
+      categoryDatabase: "Bases de Datos",
+      categoryDevops: "Despliegue & Infra",
+      categoryAi: "IA & Asistentes",
+      categoryTools: "Herramientas",
     },
     contact: {
       intro:
@@ -164,6 +170,12 @@ export const ui = {
       statusInProgress: "In progress",
       viewCertificate: "View certificate",
       viewCertificateAria: (title) => `View certificate: ${title}`,
+      categoryFrontend: "Frontend",
+      categoryBackend: "Backend",
+      categoryDatabase: "Databases",
+      categoryDevops: "Deploy & Infra",
+      categoryAi: "AI & Assistants",
+      categoryTools: "Tools",
     },
     contact: {
       intro:

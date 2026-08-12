@@ -18,9 +18,11 @@ export { profile, siteConfig } from "./profile";
 
 // Technologies
 export {
+  aiTech,
   allTechnologies,
   backendTech,
   databaseTech,
+  devopsTech,
   frontendTech,
   getTechByName,
   getTechColor,

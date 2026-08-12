@@ -12,7 +12,8 @@ import {
   ExternalLink,
   GraduationCap,
 } from "lucide-react";
-import { allTechnologies } from "@/lib/data";
+import { useLayoutEffect, useRef, useState } from "react";
+import { technologies } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { useContent } from "@/lib/i18n/use-content";
 import { TechIcon } from "@/lib/icons";
@@ -48,7 +49,38 @@ function SectionHeader({ icon: Icon, title, subtitle, viewport }) {
   );
 }
 
-const PIPELINE_COLS = 5;
+// Dimensiones fijas del box principal de cada nodo (h-20 w-28 en px).
+const NODE_W = 112;
+const NODE_H = 80;
+const GAP = 20;
+const MAX_COLS = 6;
+
+/** Orden de las categorías y su color de acento para el label + glow. */
+const CATEGORY_GROUPS = [
+  { key: "frontend", labelKey: "skills.categoryFrontend", color: "#38BDF8" },
+  { key: "backend", labelKey: "skills.categoryBackend", color: "#A3E635" },
+  { key: "database", labelKey: "skills.categoryDatabase", color: "#4C8BF5" },
+  { key: "devops", labelKey: "skills.categoryDevops", color: "#2DD4BF" },
+  { key: "ai", labelKey: "skills.categoryAi", color: "#D97757" },
+  { key: "tools", labelKey: "skills.categoryTools", color: "#C084FC" },
+];
+
+function CategoryLabel({ label, color }) {
+  return (
+    <div className="mb-3 flex items-center gap-2">
+      <span
+        className="h-1.5 w-1.5 rounded-full"
+        style={{ backgroundColor: color, boxShadow: `0 0 6px ${color}` }}
+      />
+      <span
+        className="wf-font-mono text-xs uppercase tracking-widest"
+        style={{ color }}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
 
 /** Conector horizontal entre dos nodos (con flujo de datos animado). */
 function HConnector({ reverse }) {
@@ -113,22 +145,47 @@ function VConnector() {
 }
 
 /**
- * Pipeline de tecnologías en escalera (layout boustrophedon):
- * 5 columnas; la fila par fluye → derecha, baja un escalón al
- * llegar a la columna 4, y la fila impar fluye ← izquierda.
- * Los nodos son estáticos (solo icono + nombre); la animación
- * de flujo de datos vive en los conectores (edges).
+ * Pipeline de tecnologías en escalera (layout boustrophedon) para UNA
+ * categoría: la fila par fluye → derecha, baja un escalón al llegar
+ * a la última columna, y la fila impar fluye ← izquierda. Los nodos
+ * son estáticos (solo icono + nombre); la animación de flujo de
+ * datos vive en los conectores (edges).
  */
-function TechPipeline({ viewport }) {
-  const items = allTechnologies;
-  const rows = Math.ceil(items.length / PIPELINE_COLS);
+function TechPipeline({ items, viewport }) {
+  const containerRef = useRef(null);
+  const [cols, setCols] = useState(1);
+
+  // El contenedor scrolleable del modal recorta el overflow horizontal
+  // (overflow-x-hidden), así que las columnas se calculan a partir del
+  // ancho real disponible para que las cajas de tamaño fijo (h-20 w-28)
+  // siempre quepan, incluso en mobile. Se tope además por items.length
+  // para que categorías chicas (p. ej. 2 tecnologías) no queden con un
+  // grid ancho y mayormente vacío.
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container || typeof ResizeObserver === "undefined") return;
+
+    const measure = () => {
+      const fitCols = Math.floor(
+        (container.offsetWidth + GAP) / (NODE_W + GAP),
+      );
+      setCols(Math.max(1, Math.min(MAX_COLS, fitCols, items.length)));
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [items.length]);
+
+  const rows = Math.ceil(items.length / cols);
 
   const cells = [];
   items.forEach((tech, i) => {
-    const row = Math.floor(i / PIPELINE_COLS);
-    const pos = i % PIPELINE_COLS;
+    const row = Math.floor(i / cols);
+    const pos = i % cols;
     const isReverseRow = row % 2 === 1;
-    const col = isReverseRow ? PIPELINE_COLS - 1 - pos : pos;
+    const col = isReverseRow ? cols - 1 - pos : pos;
 
     cells.push({
       type: "node",
@@ -139,7 +196,7 @@ function TechPipeline({ viewport }) {
     });
 
     if (i < items.length - 1) {
-      const nextRow = Math.floor((i + 1) / PIPELINE_COLS);
+      const nextRow = Math.floor((i + 1) / cols);
       if (nextRow === row) {
         cells.push({
           type: "h",
@@ -161,18 +218,18 @@ function TechPipeline({ viewport }) {
 
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={viewport}
       transition={{ duration: 0.5, ease: EASE }}
-      className="grid items-stretch"
+      className="grid items-stretch justify-center"
       style={{
-        gridTemplateColumns: Array.from(
-          { length: PIPELINE_COLS * 2 - 1 },
-          (_, i) => (i % 2 === 0 ? "minmax(0, 1fr)" : "minmax(12px, 22px)"),
+        gridTemplateColumns: Array.from({ length: cols * 2 - 1 }, (_, i) =>
+          i % 2 === 0 ? `${NODE_W}px` : `${GAP}px`,
         ).join(" "),
         gridTemplateRows: Array.from({ length: rows * 2 - 1 }, (_, i) =>
-          i % 2 === 0 ? "auto" : "20px",
+          i % 2 === 0 ? `${NODE_H}px` : "20px",
         ).join(" "),
       }}
     >
@@ -181,27 +238,27 @@ function TechPipeline({ viewport }) {
           return (
             <div
               key={cell.key}
-              className="group h-full"
+              className="group h-20 w-28"
               style={{ gridColumn: cell.gridColumn, gridRow: cell.gridRow }}
             >
               <div
-                className="wf-glass flex h-full flex-col items-center justify-center gap-1.5 rounded-xl px-1.5 py-2.5 transition-all duration-300 hover:border-[var(--tech-border)] hover:shadow-[0_0_18px_var(--tech-glow)] sm:gap-2 sm:p-3"
+                className="wf-glass flex h-full flex-col items-center justify-center gap-1.5 rounded-xl p-2 transition-all duration-300 hover:border-[var(--tech-border)] hover:shadow-[0_0_18px_var(--tech-glow)]"
                 style={{
                   "--tech-glow": `${cell.tech.color}40`,
                   "--tech-border": `${cell.tech.color}66`,
                 }}
               >
                 <div
-                  className="rounded-lg p-1.5 text-[#EFF4FF] transition-transform duration-300 group-hover:scale-110 sm:p-2"
+                  className="rounded-lg p-1.5 text-[#EFF4FF] transition-transform duration-300 group-hover:scale-110"
                   style={{ backgroundColor: `${cell.tech.color}18` }}
                 >
                   <TechIcon
                     icon={cell.tech.icon}
                     color={cell.tech.color}
-                    className="h-4 w-4 sm:h-6 sm:w-6"
+                    className="h-5 w-5"
                   />
                 </div>
-                <span className="text-center text-[10px] leading-tight text-[#94A3C8] transition-colors group-hover:text-[#EFF4FF] sm:text-xs">
+                <span className="line-clamp-1 text-center text-[10px] leading-tight text-[#94A3C8] transition-colors group-hover:text-[#EFF4FF]">
                   {cell.tech.name}
                 </span>
               </div>
@@ -482,7 +539,18 @@ export function SkillsContent({ scrollRef }) {
           subtitle={t("skills.techStackSubtitle")}
           viewport={viewport}
         />
-        <TechPipeline viewport={viewport} />
+        <div className="space-y-8">
+          {CATEGORY_GROUPS.map((group) => {
+            const items = technologies[group.key];
+            if (!items?.length) return null;
+            return (
+              <div key={group.key}>
+                <CategoryLabel label={t(group.labelKey)} color={group.color} />
+                <TechPipeline items={items} viewport={viewport} />
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       <section>

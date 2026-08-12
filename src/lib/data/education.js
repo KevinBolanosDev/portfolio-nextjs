@@ -13,16 +13,6 @@
 export const education = [
   {
     id: 1,
-    title: "Asistente Técnico en Programación de Software",
-    institution: "Politécnico PIO",
-    period: "Mar 2025 - Presente",
-    status: "in-progress",
-    description:
-      "Formación técnica en desarrollo de software, algoritmos y estructuras de datos.",
-    certificate: null,
-  },
-  {
-    id: 2,
     title: "Bootcamp Full Stack JavaScript MERN",
     institution: "Ada School",
     period: "Mar 2023 - Nov 2023",
@@ -30,10 +20,10 @@ export const education = [
     description:
       "Desarrollo completo de aplicaciones web usando MongoDB, Express, React y Node.js.",
     certificate:
-      "https://learn.ada-school.org/certifications/65451dc4831c9788c54e7f3e", // TODO: Agregar URL real del certificado
+      "https://learn.ada-school.org/certifications/65451dc4831c9788c54e7f3e",
   },
   {
-    id: 3,
+    id: 2,
     title: "Digital Talent Bootcamp - Habilidades Socioemocionales",
     institution: "Pro Talento",
     period: "Mar 2023 - Nov 2023",
@@ -41,7 +31,7 @@ export const education = [
     description:
       "Desarrollo de habilidades blandas y competencias para el mundo laboral tech.",
     certificate:
-      "https://drive.google.com/file/d/1hTnPY2dipDhNZo-GRH-dhwd2g48LHh6K/view?usp=sharing", // TODO: Agregar URL real del certificado
+      "https://drive.google.com/file/d/14yp61N17SlazH1oAlCxx4-Yk04biehEK/view?usp=sharing",
   },
 ];
 
@@ -51,27 +41,41 @@ export const education = [
 export const certifications = [
   {
     id: 1,
-    title: "Control de Versiones",
+    title: "Certificado Curso de IA 2026",
     platform: "Coursera",
-    date: "Dic 2023",
-    certificate: "https://coursera.org/share/28aebd6ee27f673c2dff82fe107cffe1", // TODO: Agregar URL real
+    date: "Ene 2026",
+    certificate: "https://drive.google.com/file/d/1rjLOx_rMpOZNvqBVSKpXrEz8I-wPrM6F/view?usp=sharing",
   },
   {
     id: 2,
+    title: "Crea Landing Page con Wordpress",
+    platform: "Talleres donweb",
+    date: "Feb 2024",
+    certificate: "https://drive.google.com/file/d/1rjLOx_rMpOZNvqBVSKpXrEz8I-wPrM6F/view?usp=sharing",
+  },
+  {
+    id: 3,
+    title: "Control de Versiones",
+    platform: "Coursera",
+    date: "Dic 2023",
+    certificate: "https://coursera.org/share/28aebd6ee27f673c2dff82fe107cffe1",
+  },
+  {
+    id: 4,
     title: "Introducción al Desarrollo Front-End",
     platform: "Coursera",
     date: "Nov 2023",
     certificate: "https://coursera.org/share/cdc35b9b295df9c7ee8ad1a5156ba950",
   },
   {
-    id: 3,
+    id: 5,
     title: "Fundamentos de Ciberseguridad",
     platform: "Coursera",
     date: "Oct 2023",
     certificate: "https://coursera.org/share/502eb966559616bcd0a5710cd5468eed",
   },
   {
-    id: 4,
+    id: 6,
     title: "Web Development Fundamentals: Full Stack or Front-end",
     platform: "LinkedIn",
     date: "Ago 2023",
