@@ -4,7 +4,7 @@
  */
 
 export const LOCALES = ["es", "en"];
-export const DEFAULT_LOCALE = "es";
+export const DEFAULT_LOCALE = "en";
 export const LOCALE_COOKIE = "wf-locale";
 
 export function resolveLocale(value) {
