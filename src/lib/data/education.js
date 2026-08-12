@@ -90,16 +90,31 @@ export const certifications = [
 export const workExperience = [
   {
     id: 1,
-    title: "Desarrollador Full Stack",
-    company: "Freelance",
-    period: "2025",
-    status: "completed",
+    title: "Frontend Developer",
+    company: "Aria Financial Group / Matrix Development",
+    period: "Jun 2025 - Presente",
+    status: "in-progress",
     description:
-      "Desarrollo de plataformas SaaS empresariales como AriaLeads y AireHub para la industria de seguros.",
-    achievements: [
-      "Desarrollo de sistema de gestión de leads para +38,000 agentes",
-      "Implementación de dashboards con métricas en tiempo real",
-      "Arquitectura de aplicaciones con Next.js, React y PostgreSQL",
+      "Desarrollo frontend de dos plataformas SaaS para la industria de seguros, Aria InsurTech y AriaDesk, desde la arquitectura de componentes hasta la integración con APIs y servicios externos.",
+    projects: [
+      {
+        name: "Aria InsurTech",
+        achievements: [
+          "Centro de administración con +26 módulos (agentes, campañas, distribución de leads) sobre React 19 y Next.js 16 App Router",
+          "Marketplace de leads con mapa interactivo de EE. UU. y actualizaciones en tiempo real vía WebSocket",
+          "Gestión de estado a tres niveles (TanStack Query, Redux Toolkit, Zustand) manteniendo un rendimiento óptimo",
+          "Sistema de diseño propio con tokens de marca estrictos, aplicado con linting y documentación",
+        ],
+      },
+      {
+        name: "AriaDesk",
+        achievements: [
+          "Flujo multi-paso de creación de casos con validación dual cliente/servidor (React Hook Form + Zod)",
+          "Integración con Gmail y Google Calendar para campañas de email y gestión de citas",
+          "Soporte multi-tenant e internacionalización (inglés/español) con i18next",
+          "Dashboard centralizado con KPIs y analítica en tiempo real para gestión de portafolio de agentes",
+        ],
+      },
     ],
   },
 ];

@@ -132,16 +132,11 @@ export function getLocalizedStepConfig(locale, stepIndex) {
 
 const enEducationText = {
   1: {
-    title: "Software Programming Technical Assistant",
-    description:
-      "Technical training in software development, algorithms, and data structures.",
-  },
-  2: {
     title: "Full Stack JavaScript MERN Bootcamp",
     description:
       "End-to-end web application development using MongoDB, Express, React, and Node.js.",
   },
-  3: {
+  2: {
     title: "Digital Talent Bootcamp - Soft Skills",
     description:
       "Development of soft skills and competencies for the tech workplace.",
@@ -149,21 +144,38 @@ const enEducationText = {
 };
 
 const enCertificationsText = {
-  1: { title: "Version Control" },
-  2: { title: "Introduction to Front-End Development" },
-  3: { title: "Cybersecurity Fundamentals" },
-  4: { title: "Web Development Fundamentals: Full Stack or Front-end" },
+  1: { title: "AI Course Certificate 2026" },
+  2: { title: "Building a Landing Page with WordPress" },
+  3: { title: "Version Control" },
+  4: { title: "Introduction to Front-End Development" },
+  5: { title: "Cybersecurity Fundamentals" },
+  6: { title: "Web Development Fundamentals: Full Stack or Front-end" },
 };
 
 const enWorkExperienceText = {
   1: {
-    title: "Full Stack Developer",
+    title: "Frontend Developer",
     description:
-      "Development of enterprise SaaS platforms like AriaLeads and AireHub for the insurance industry.",
-    achievements: [
-      "Built a lead management system for 38,000+ agents",
-      "Implemented dashboards with real-time metrics",
-      "Architected applications with Next.js, React, and PostgreSQL",
+      "Frontend development for two SaaS platforms in the insurance industry, Aria InsurTech and AriaDesk, from component architecture to API and third-party service integrations.",
+    projects: [
+      {
+        name: "Aria InsurTech",
+        achievements: [
+          "Admin control center with 26+ modules (agents, campaigns, lead distribution) built on React 19 and Next.js 16 App Router",
+          "Lead marketplace with an interactive US map and real-time updates via WebSocket",
+          "Three-tier state management (TanStack Query, Redux Toolkit, Zustand) while keeping performance optimal",
+          "Custom design system with strict brand tokens, enforced through linting and documentation",
+        ],
+      },
+      {
+        name: "AriaDesk",
+        achievements: [
+          "Multi-step case creation flow with dual client/server validation (React Hook Form + Zod)",
+          "Gmail and Google Calendar integration for email campaigns and appointment management",
+          "Multi-tenant support and internationalization (English/Spanish) with i18next",
+          "Centralized dashboard with KPIs and real-time analytics for agent portfolio management",
+        ],
+      },
     ],
   },
 };
@@ -189,8 +201,6 @@ export function getWorkExperience(locale) {
   return esWorkExperience.map((item) => ({
     ...item,
     ...enWorkExperienceText[item.id],
-    achievements:
-      enWorkExperienceText[item.id]?.achievements ?? item.achievements,
   }));
 }
 
@@ -202,161 +212,110 @@ function mergeGallery(gallery, overlay) {
 
 const enProfessionalProjectsText = {
   1: {
+    title: "Aria InsurTech",
     description:
-      "Aria InsurTech is a full-scale enterprise SaaS platform for end-to-end insurance lead management, built with React 19 and Next.js 16 (App Router). The system covers the complete lifecycle of buying, selling, distributing, and managing leads across life insurance and commercial sectors — featuring differentiated dashboards for administrators and agents, a built-in marketplace, financial analytics, a rewards/gamification engine, and a partner affiliate program.",
+      "Aria InsurTech is a large-scale enterprise SaaS platform for end-to-end insurance lead management, built with React 19 and Next.js 16 (App Router). The system covers the full lifecycle of buying, selling, distributing, and managing leads across the commercial and life insurance sectors, with an integrated marketplace, financial analytics, a rewards/gamification engine, and an affiliate partner program.",
     gallery: [
       {
-        title: "Login Page",
+        title: "Main Dashboard",
         description:
-          "Secure authentication system with a modern design and a compelling call-to-action.",
+          "Admin control panel with real-time metrics, agent management, and centralized financial tracking.",
       },
       {
         description:
-          "Admin panel with real-time metrics: 38,734 total agents, 98.3% active.",
+          "SaaS portal for agents with underwriting tools, subscription products, and SSO access to AriaDesk.",
       },
       {
         description:
-          "Personalized agent dashboard with KPIs, leads, and premium tracking ($692,659+).",
+          "Gamification system with a rewards catalog, activity-based point accrual, and SWAG order tracking.",
       },
       {
-        title: "Lead Management",
         description:
-          "Lead management system with advanced filters, Gold/Silver categories, and export.",
+          "Self-paced course platform with video resources, bootcamp modules, and agent certification.",
       },
       {
         title: "Lead Marketplace",
         description:
-          "Interactive US map with 160,000+ available leads and filters by state/county.",
-      },
-      {
-        description:
-          "Support system with tickets, incidents, and case tracking.",
+          "Marketplace with an interactive US map, state/county filters, mailing campaigns, and a real-time WebSocket-powered Lead Packs system.",
       },
     ],
     documentation: {
       overview:
-        "AriaLeads is an enterprise SaaS platform for end-to-end lead management, built with modern React/Next.js technologies. The system is designed for buying, selling, distributing, and managing leads in the life insurance industry and other commercial sectors.",
+        "Aria InsurTech is a large-scale enterprise SaaS platform for end-to-end insurance lead management, built with React 19 and Next.js 16 (App Router). The system covers the full lifecycle of buying, selling, distributing, and managing leads across the commercial and life insurance sectors, with an integrated marketplace, financial analytics, a rewards/gamification engine, and an affiliate partner program.",
       features: [
-        "Role-based authentication system (Admin/Agent)",
-        "Admin Control Center with real-time metrics (38,000+ active agents)",
-        "Agent dashboard with personalized KPIs and premium tracking",
-        "Lead marketplace with interactive US map (160,000+ leads available)",
+        "Role-based authentication system (Admin/Agent) with JWT middleware, automatic token refresh, and route protection",
+        "Admin control center with 26+ management modules, including agent management, campaign management, lead pack distribution, and financial oversight",
+        "Leading marketplace with an interactive US availability map, lead type (mailed, marketplace, digital, lead packs), and tier (gold/silver)",
+        "SaaS product marketplace with subscription management, promo codes, discount codes, and a complete checkout flow",
         "Lead management by category (Mailed, Marketplace, Digital, Lead Packs)",
-        "Advanced filters by state, county, campaign, and lead type (Gold/Silver)",
-        "Financial system with revenue tracking ($692,659+ in premiums)",
-        "Light/dark mode and a fully responsive design",
+        "Agent dashboard with personalized KPIs, a wallet/credits system, shopping cart, and order management",
       ],
       techStack:
-        "Frontend built with React.js/Next.js and Shadcn with TailwindCSS for a modern UI. Backend in Python for large-scale data management. Integrated with geolocation APIs for the interactive map.",
+        "Frontend built with React 19 / Next.js 16 (App Router) and Shadcn/ui + Radix UI with TailwindCSS for a modern, component-based UI. State management via TanStack React Query (server state), Redux Toolkit + Persist (global client state), and Zustand (isolated feature stores). Data visualization with Recharts. Animations via Motion (Framer Motion). Drag and drop with @dnd-kit. PDF generation with @react-pdf/renderer + pdf-lib. Deployed with Docker, containerized for production environments.",
       challenges:
-        "Building a scalable platform capable of handling tens of thousands of agents and hundreds of thousands of leads, with differentiated dashboards for admins and agents, while keeping performance optimal.",
+        "Building a scalable, multi-feature platform with 26+ admin modules and 12+ agent modules, each with distinct data flows and permissions. Managing complex state across three different state management solutions (React Query, Redux, Zustand) while keeping performance optimal. Implementing a custom design system with strict brand tokens (no hardcoded hex values) and curated gradient/color rules, all enforced through linting and documentation. Supporting real-time financial analytics.",
     },
   },
   2: {
+    title: "AriaDesk",
     description:
-      "Comprehensive platform for insurance agents with a metrics dashboard, achievement system, training bootcamp, and carrier management. Includes integration with AriaLeads.",
+      "Comprehensive insurance agency management platform with centralized control over portfolio, cases, campaigns, and real-time analytics. Integrated with Gmail and Google Calendar.",
     gallery: [
       {
-        title: "Login Page",
+        title: "Google Authentication",
         description:
-          "Authentication system with a live dashboard preview and real-time analytics.",
+          "Secure login system with integrated SSO for quick platform access.",
       },
       {
         title: "Main Dashboard",
         description:
-          "Panel with KPIs: Monthly Premium $4,749, Active Policies 37, Team Members 979, Persistency 97.3%.",
+          "Centralized panel with KPIs, real-time analytics, and quick access to core tools.",
       },
       {
-        title: "Achievement System",
+        title: "Case Management",
         description:
-          "Achievement badges with rankings, badge progress (22% completion), and an achievement journey.",
+          "Multi-step flow for case creation and tracking with real-time validation.",
       },
       {
+        title: "Insurance Portfolio",
         description:
-          "Course center with AIRE Mortgage Protection Training and instructor management.",
+          "Centralized view of clients, active policies, and relationship management.",
       },
       {
-        title: "Training Center",
+        title: "Email Campaigns",
         description:
-          "Training center with categorized videos, learning progress, and content management.",
+          "Campaign creation and scheduling with direct Gmail integration.",
       },
       {
+        title: "Tools & Chat",
         description:
-          "Mobile view for managing carrier partnerships, premiums, and policies.",
-      },
-      {
-        title: "Mobile Navigation",
-        description:
-          "Responsive menu with all sections: Dashboard, Leaderboard, Tools, Leads, Policies, etc.",
-      },
-      {
-        title: "AriaLeads Integration",
-        description:
-          "AriaLeads embedded within AireHub for unified lead and premium management.",
+          "Quick access to tools, an intelligent Wizard Chat, and a support center.",
       },
     ],
     documentation: {
       overview:
-        "AireHub is a comprehensive platform designed for life insurance agents that centralizes all the tools they need for daily operations. It includes a metrics dashboard, a gamified badge system, a training bootcamp, carrier management, and full integration with AriaLeads for lead management.",
+        "AriaDesk is a SaaS platform designed for insurance agents, centralizing their entire business management. It supports managing client portfolios, complex cases, marketing campaigns, performance analytics, and integration with external tools.",
       features: [
-        "Real-time KPI dashboard (Premium, Policies, Team Members, Persistency)",
-        "Achievement badge system with rankings and gamified progress",
-        "Course bootcamp with AIRE Mortgage Protection Training",
-        "Training center with categorized videos and progress tracking",
-        "Quick access to Zoom, WhatsApp, Slack, and social media",
-        "Carrier management with partnerships and metrics",
+        "Centralized insurance portfolio management (Book of Business)",
+        "Multi-step case creation flow with validation",
+        "Email campaigns integrated with Gmail",
+        "Dashboard with real-time analytics and KPIs",
+        "Multi-carrier support with unified management",
+        "Google Calendar integration for appointments and reminders",
+        "Permissions system and user management",
         "Fully responsive design (desktop and mobile)",
-        "Seamless integration with AriaLeads for lead management",
+        "Internationalization (English/Spanish)",
       ],
       techStack:
-        "Next.js 14 with App Router for the frontend, React.js for components, shadcn/ui for the design system, TailwindCSS for utility-first styling. Modular architecture with microservice integration.",
+        "Next.js 15 with App Router, React 19, Redux Toolkit for global state, React Hook Form + Zod for validation, TailwindCSS v4, i18next for multi-language support. Integrated with REST APIs and Google Services.",
       challenges:
-        "Integrating AriaLeads as a module within AireHub while keeping UI consistency, implementing the badge gamification system, and building a training bootcamp with progress tracking.",
+        "Designing complex multi-step flows with draft persistence, dual client/server validation, seamless integration with Gmail and Google Calendar, and multi-tenant support with JWT-based headers.",
     },
   },
 };
 
 const enPersonalProjectsText = {
   1: {
-    title: "First CV",
-    description:
-      "My first web project: a personal résumé built from scratch with HTML and CSS, applying the fundamentals of web structure and visual design.",
-    documentation: {
-      overview:
-        "This was my first foray into web development. An interactive résumé showcasing my professional background, skills, and tech interests with a modern, responsive design.",
-      features: [
-        "Attractive visual design with gradients and custom typography",
-        "Skills section with progress bars",
-        "Tech interests organized visually",
-        "Contact information with icons",
-        "Layout structured with CSS Grid and Flexbox",
-      ],
-      techStack:
-        "Semantic HTML5 for document structure. CSS3 for styling, including gradients, flexbox, and responsive design.",
-      challenges:
-        "Learning to properly structure an HTML document and apply CSS styling to achieve a professional look was the first big step on my path as a developer.",
-    },
-  },
-  2: {
-    description:
-      "My first web portfolio with multiple sections, tab navigation, personal info, projects, and a contact form.",
-    documentation: {
-      overview:
-        "A complete web portfolio presenting my profile as a Full-Stack MERN Developer, with a modern design using dark colors and teal accents.",
-      features: [
-        "Navigation between sections (About, Education, Skills, Projects, Contact)",
-        "Responsive design with decorative geometric elements",
-        "Intro section with a profile photo",
-        "Functional contact form",
-        "Smooth animations and transitions",
-      ],
-      techStack:
-        "Semantic HTML5 for structure, CSS3 with animations and responsive design, vanilla JavaScript for interactivity and navigation.",
-      challenges:
-        "Creating a visually appealing design with floating geometric shapes and achieving smooth navigation between the portfolio's different sections.",
-    },
-  },
-  3: {
     description:
       "Modern news homepage with multiple sections, built as a Frontend Mentor challenge using React and TailwindCSS.",
     documentation: {
@@ -375,7 +334,7 @@ const enPersonalProjectsText = {
         "Faithfully replicating the Frontend Mentor design while keeping the layout responsive and preserving the grid structure across the different content sections.",
     },
   },
-  4: {
+  2: {
     description:
       "My second professional portfolio with a futuristic dark design, interactive sections, a project gallery, and a functional contact form.",
     documentation: {

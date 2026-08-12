@@ -283,6 +283,10 @@ function TechPipeline({ items, viewport }) {
   );
 }
 
+// Colores de acento para distinguir cada sub-proyecto dentro de una
+// misma experiencia laboral (p. ej. dos plataformas en la misma empresa).
+const PROJECT_ACCENTS = ["#38BDF8", "#C084FC", "#2DD4BF", "#FBBF24"];
+
 function ExperienceCards({ viewport, workExperience }) {
   const { t } = useLanguage();
 
@@ -325,18 +329,57 @@ function ExperienceCards({ viewport, workExperience }) {
             {exp.description}
           </p>
 
-          {exp.achievements && (
-            <ul className="space-y-1.5">
-              {exp.achievements.map((achievement) => (
-                <li
-                  key={achievement}
-                  className="flex items-start gap-2 text-xs text-[#94A3C8]"
-                >
-                  <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#34D399]" />
-                  {achievement}
-                </li>
-              ))}
-            </ul>
+          {exp.projects ? (
+            <div className="space-y-4">
+              {exp.projects.map((project, projectIndex) => {
+                const accent =
+                  PROJECT_ACCENTS[projectIndex % PROJECT_ACCENTS.length];
+                return (
+                  <div key={project.name}>
+                    <div className="mb-1.5 flex items-center gap-1.5">
+                      <span
+                        className="h-1.5 w-1.5 rounded-full"
+                        style={{
+                          backgroundColor: accent,
+                          boxShadow: `0 0 6px ${accent}`,
+                        }}
+                      />
+                      <span
+                        className="wf-font-mono text-xs font-semibold uppercase tracking-wider"
+                        style={{ color: accent }}
+                      >
+                        {project.name}
+                      </span>
+                    </div>
+                    <ul className="space-y-1.5">
+                      {project.achievements.map((achievement) => (
+                        <li
+                          key={achievement}
+                          className="flex items-start gap-2 text-xs text-[#94A3C8]"
+                        >
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#34D399]" />
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            exp.achievements && (
+              <ul className="space-y-1.5">
+                {exp.achievements.map((achievement) => (
+                  <li
+                    key={achievement}
+                    className="flex items-start gap-2 text-xs text-[#94A3C8]"
+                  >
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#34D399]" />
+                    {achievement}
+                  </li>
+                ))}
+              </ul>
+            )
           )}
         </motion.div>
       ))}
