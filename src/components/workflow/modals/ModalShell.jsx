@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { NODE_ICONS } from "../node-icons";
 
 /**
@@ -19,6 +20,7 @@ import { NODE_ICONS } from "../node-icons";
  * lanza el warning "Container ref is defined but not hydrated").
  */
 function ModalBody({ section, maxWidth, onClose, children }) {
+  const { t } = useLanguage();
   const prefersReduced = useReducedMotion();
   const closeRef = useRef(null);
   const scrollRef = useRef(null);
@@ -95,7 +97,7 @@ function ModalBody({ section, maxWidth, onClose, children }) {
             ref={closeRef}
             type="button"
             onClick={onClose}
-            aria-label="Cerrar"
+            aria-label={t("modalShell.close")}
             className="wf-glass cursor-pointer rounded-lg p-2 text-[#94A3C8] transition-colors hover:text-[#EFF4FF]"
           >
             <X className="h-4 w-4" />

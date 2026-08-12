@@ -4,10 +4,8 @@ import { useReducedMotion } from "framer-motion";
 import { FastForward } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useWorkflowRunner } from "@/hooks/use-workflow-runner";
-import {
-  getStepConfig,
-  workflowSections,
-} from "@/lib/data/workflowNodes";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { useContent } from "@/lib/i18n/use-content";
 import { MODAL_CONTENT, ModalShell } from "./modals";
 import { SectionNode } from "./SectionNode";
 import { StartNode } from "./StartNode";
@@ -28,6 +26,8 @@ import { GhostNode } from "./WorkflowNode";
  */
 export function WorkflowExperience() {
   const prefersReduced = useReducedMotion();
+  const { t } = useLanguage();
+  const { workflowSections, getStepConfig } = useContent();
   const runner = useWorkflowRunner({ reducedMotion: prefersReduced ?? false });
   const {
     revealedSteps,
@@ -68,7 +68,14 @@ export function WorkflowExperience() {
       order.push({ id: "complete", config: getStepConfig(workflowSections.length) });
     }
     return order;
-  }, [revealedSteps, isRunning, targetStep, isCompleted]);
+  }, [
+    revealedSteps,
+    isRunning,
+    targetStep,
+    isCompleted,
+    workflowSections,
+    getStepConfig,
+  ]);
 
   /** Recalcula los paths SVG entre nodos consecutivos. */
   const measure = useCallback(() => {
@@ -131,14 +138,14 @@ export function WorkflowExperience() {
       });
     });
     return () => cancelAnimationFrame(frame);
-  }, [isRunning, revealedSteps, isCompleted, prefersReduced]);
+  }, [isRunning, revealedSteps, isCompleted, prefersReduced, workflowSections]);
 
   // Anuncio para lectores de pantalla al revelar un nodo
   useEffect(() => {
     if (revealedSteps === 0) return;
     const config = getStepConfig(revealedSteps - 1);
-    setAnnouncement(`Nodo ${config.title} desbloqueado`);
-  }, [revealedSteps]);
+    setAnnouncement(t("workflowExperience.nodeUnlocked", config.title));
+  }, [revealedSteps, getStepConfig, t]);
 
   const handleStart = () => {
     interactedRef.current = true;
@@ -198,7 +205,7 @@ export function WorkflowExperience() {
               className="wf-font-mono inline-flex cursor-pointer items-center gap-1.5 text-xs text-[#5B6A8A] transition-colors hover:text-[#94A3C8]"
             >
               <FastForward className="h-3.5 w-3.5" />
-              Saltar intro
+              {t("workflowExperience.skipIntro")}
             </button>
           </div>
         )}

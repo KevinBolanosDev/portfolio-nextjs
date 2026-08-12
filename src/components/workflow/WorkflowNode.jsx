@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { NodeProgress } from "./NodeProgress";
 
 /**
@@ -9,6 +10,8 @@ import { NodeProgress } from "./NodeProgress";
  * Al llegar a 100% se reemplaza por el SectionNode real.
  */
 export function GhostNode({ step, progress }) {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
@@ -21,7 +24,7 @@ export function GhostNode({ step, progress }) {
         progress={progress}
         color={step.color}
         logs={step.logs}
-        label={`Cargando ${step.title}`}
+        label={t("common.loadingAria", step.title)}
       />
       <p className="wf-font-mono mt-3 text-[10px] uppercase tracking-widest text-[#5B6A8A]">
         {step.slug}

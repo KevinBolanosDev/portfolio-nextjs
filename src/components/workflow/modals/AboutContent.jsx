@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
-import { profile } from "@/lib/data";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { useContent } from "@/lib/i18n/use-content";
 
 const container = {
   hidden: {},
@@ -24,6 +25,9 @@ const item = {
  * identidad y card de descripción. Colores de la sección (#C084FC).
  */
 export function AboutContent() {
+  const { t } = useLanguage();
+  const { profile } = useContent();
+
   return (
     <motion.div
       variants={container}
@@ -84,7 +88,7 @@ export function AboutContent() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#34D399] opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#34D399]" />
               </span>
-              Disponible
+              {t("about.available")}
             </span>
           </div>
         )}
@@ -113,7 +117,7 @@ export function AboutContent() {
           <div className="mb-3 flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-[#C084FC]" />
             <h4 className="text-sm font-semibold text-[#EFF4FF]">
-              Acerca de mí
+              {t("about.heading")}
             </h4>
           </div>
 

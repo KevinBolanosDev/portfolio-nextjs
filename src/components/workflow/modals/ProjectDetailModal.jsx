@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 const TEAL = "#2DD4BF";
 
@@ -40,12 +41,13 @@ function DocBlock({ icon: Icon, title, children }) {
 
 // Flecha de navegación con glow neón teal sutil (se intensifica en hover).
 function NavArrow({ direction, onClick }) {
+  const { t } = useLanguage();
   const isPrev = direction === "prev";
   const Icon = isPrev ? ChevronLeft : ChevronRight;
   return (
     <button
       type="button"
-      aria-label={isPrev ? "Imagen anterior" : "Imagen siguiente"}
+      aria-label={isPrev ? t("projectDetail.prevImage") : t("projectDetail.nextImage")}
       onClick={(event) => {
         event.stopPropagation();
         onClick();
@@ -79,6 +81,7 @@ function NavArrow({ direction, onClick }) {
  * de una imagen muestra flechas para recorrer la galería.
  */
 function ImageLightbox({ image, index, total, onClose, onPrev, onNext }) {
+  const { t } = useLanguage();
   const showNav = total > 1;
   // "loading" | "loaded" | "error". Se reinicia en cada cambio de imagen
   // (navegación o apertura) para mostrar feedback mientras carga desde
@@ -146,7 +149,7 @@ function ImageLightbox({ image, index, total, onClose, onPrev, onNext }) {
             {status === "error" && (
               <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 text-[#5B6A8A]">
                 <ImageOff className="h-8 w-8" />
-                <p className="text-xs">No se pudo cargar la imagen</p>
+                <p className="text-xs">{t("projectDetail.imageLoadError")}</p>
               </div>
             )}
 
@@ -175,7 +178,7 @@ function ImageLightbox({ image, index, total, onClose, onPrev, onNext }) {
             <button
               type="button"
               onClick={onClose}
-              aria-label="Cerrar imagen ampliada"
+              aria-label={t("projectDetail.closeLightbox")}
               className="absolute -right-3 -top-3 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#EFF4FF] text-[#050A18] shadow-xl transition-transform hover:scale-110"
             >
               <X className="h-5 w-5" />
@@ -194,6 +197,7 @@ function ImageLightbox({ image, index, total, onClose, onPrev, onNext }) {
  * listeners se monten solo cuando el modal está abierto.
  */
 function DetailBody({ project, onClose }) {
+  const { t } = useLanguage();
   const closeRef = useRef(null);
   // Índice de la captura abierta en el visor ampliado (null = cerrado).
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -301,7 +305,7 @@ function DetailBody({ project, onClose }) {
             ref={closeRef}
             type="button"
             onClick={onClose}
-            aria-label="Cerrar detalle del proyecto"
+            aria-label={t("projectDetail.closeDetail")}
             className="wf-glass cursor-pointer rounded-lg p-2 text-[#94A3C8] transition-colors hover:text-[#EFF4FF]"
           >
             <X className="h-4 w-4" />
@@ -332,7 +336,7 @@ function DetailBody({ project, onClose }) {
                         // El duplicado (copy 1) es decorativo: fuera del
                         // orden de tabulación para no repetir el foco.
                         tabIndex={copy === 1 ? -1 : undefined}
-                        aria-label={`Ampliar imagen: ${item.title}`}
+                        aria-label={t("projectDetail.expandImageAria", item.title)}
                         onClick={() => setSelectedIndex(index)}
                         className={`group/slide relative h-44 shrink-0 cursor-pointer overflow-hidden rounded-xl border border-[rgba(76,139,245,0.25)] bg-[#0F1A2E] transition-colors hover:border-[rgba(45,212,191,0.6)] sm:h-56 ${
                           isMobile
@@ -376,14 +380,14 @@ function DetailBody({ project, onClose }) {
           {/* Documentación compacta */}
           {docs && (
             <div className="mt-6 space-y-5">
-              <DocBlock icon={Layers} title="Descripción general">
+              <DocBlock icon={Layers} title={t("projectDetail.overview")}>
                 <p className="text-sm leading-relaxed text-[#94A3C8]">
                   {docs.overview}
                 </p>
               </DocBlock>
 
               {docs.features?.length > 0 && (
-                <DocBlock icon={ListChecks} title="Características">
+                <DocBlock icon={ListChecks} title={t("projectDetail.features")}>
                   <ul className="grid gap-x-6 gap-y-1.5 md:grid-cols-2">
                     {docs.features.map((feature) => (
                       <li
@@ -405,12 +409,12 @@ function DetailBody({ project, onClose }) {
               )}
 
               <div className="grid gap-5 md:grid-cols-2">
-                <DocBlock icon={Layers} title="Stack técnico">
+                <DocBlock icon={Layers} title={t("projectDetail.techStack")}>
                   <p className="text-xs leading-relaxed text-[#94A3C8]">
                     {docs.techStack}
                   </p>
                 </DocBlock>
-                <DocBlock icon={Mountain} title="Desafíos">
+                <DocBlock icon={Mountain} title={t("projectDetail.challenges")}>
                   <p className="text-xs leading-relaxed text-[#94A3C8]">
                     {docs.challenges}
                   </p>
@@ -432,7 +436,7 @@ function DetailBody({ project, onClose }) {
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-[#2DD4BF] to-[#0D9488] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_16px_rgba(45,212,191,0.3)]"
             >
               <ExternalLink className="h-4 w-4" />
-              Ver en producción
+              {t("projectDetail.viewLive")}
             </motion.a>
           )}
 
@@ -446,12 +450,12 @@ function DetailBody({ project, onClose }) {
               className="wf-glass inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium text-[#EFF4FF] transition-colors hover:border-[rgba(45,212,191,0.5)]"
             >
               <Github className="h-4 w-4" />
-              Ver en GitHub
+              {t("projectDetail.viewGithub")}
             </motion.a>
           ) : (
             <span className="wf-font-mono inline-flex items-center gap-1.5 rounded-full border border-[rgba(30,48,85,0.6)] px-3 py-1.5 text-xs text-[#5B6A8A]">
               <Lock className="h-3 w-3" />
-              código privado
+              {t("projectDetail.privateCode")}
             </span>
           )}
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 const RING_RADIUS = 30;
 const RING_CIRC = 2 * Math.PI * RING_RADIUS;
@@ -10,11 +11,12 @@ const RING_CIRC = 2 * Math.PI * RING_RADIUS;
  * y una línea de "log" rotativa estilo terminal de CI.
  */
 export function NodeProgress({ progress, color, logs = [], label }) {
+  const { t } = useLanguage();
   const logIndex = Math.min(
     logs.length - 1,
     Math.floor((progress / 100) * logs.length),
   );
-  const currentLog = logs[logIndex] ?? "Procesando…";
+  const currentLog = logs[logIndex] ?? t("common.processing");
 
   return (
     <div

@@ -1,6 +1,8 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 
-export const socialLinks = [
+/** El link de Email lleva subject/body traducibles, por eso es una función. */
+export function getSocialLinks({ mailSubject, mailBody }) {
+  return [
     {
       name: "GitHub",
       href: "https://github.com/kevinbolanosdev",
@@ -13,7 +15,8 @@ export const socialLinks = [
     },
     {
       name: "Email",
-      href: "https://mail.google.com/mail/?view=cm&fs=1&to=im.kevinbolanos.dev@gmail.com&su=Consulta desde el portafolio&body=Hola Kevin, me gustaría contactarte para cotizar un proyecto.",
+      href: `https://mail.google.com/mail/?view=cm&fs=1&to=im.kevinbolanos.dev@gmail.com&su=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`,
       icon: Mail,
     },
   ];
+}

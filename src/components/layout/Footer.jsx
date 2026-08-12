@@ -1,5 +1,7 @@
 "use client";
-import { socialLinks } from "@/lib/data/footer";
+import { LanguageToggle } from "@/components/ui/language-toggle";
+import { getSocialLinks } from "@/lib/data/footer";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 /**
  * Path de ola tileable (viewBox 1440x90): termina a la misma altura
@@ -28,6 +30,11 @@ function WaveLayer({ className, color, opacity }) {
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
+  const socialLinks = getSocialLinks({
+    mailSubject: t("footer.mailSubject"),
+    mailBody: t("footer.mailBody"),
+  });
 
   return (
     <footer className="relative overflow-hidden border-t border-[rgba(76,139,245,0.15)] bg-[rgba(15,26,46,0.45)] backdrop-blur-[20px]">
@@ -40,7 +47,7 @@ export function Footer() {
       </div>
 
       <div className="relative z-10 mx-auto flex flex-col items-center gap-3 px-4 py-6">
-        {/* Redes sociales */}
+        {/* Redes sociales + idioma */}
         <div className="flex items-center gap-4">
           {socialLinks.map((link) => {
             const Icon = link.icon;
@@ -57,11 +64,12 @@ export function Footer() {
               </a>
             );
           })}
+          <LanguageToggle />
         </div>
 
         {/* Copyright */}
         <p className="wf-font-mono text-xs text-[#94A3C8]">
-          Copyright © {currentYear} Todos los derechos reservados.
+          {t("footer.rights", currentYear)}
         </p>
       </div>
     </footer>

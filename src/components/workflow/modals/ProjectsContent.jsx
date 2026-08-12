@@ -8,8 +8,9 @@ import {
 } from "framer-motion";
 import { Eye } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { professionalProjects, projects } from "@/lib/data/projectsData";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { useContent } from "@/lib/i18n/use-content";
 import { WorkflowEdges } from "../WorkflowEdge";
 import { ProjectDetailModal } from "./ProjectDetailModal";
 
@@ -19,22 +20,6 @@ const EASE = [0.16, 1, 0.3, 1];
 /** Paleta neón: cada edge del pipeline recibe su propio color. */
 const EDGE_COLORS = ["#2DD4BF", "#38BDF8", "#818CF8", "#C084FC", "#A3E635"];
 
-/** Pipeline único: profesionales primero, luego personales. */
-const ALL_PROJECTS = [
-  ...professionalProjects.map((p) => ({
-    ...p,
-    key: `pro-${p.id}`,
-    category: "Profesional",
-    categoryColor: TEAL,
-  })),
-  ...projects.map((p) => ({
-    ...p,
-    key: `per-${p.id}`,
-    category: "Personal",
-    categoryColor: "#818CF8",
-  })),
-];
-
 /**
  * Nodo de proyecto. La imagen tiene parallax real: se desplaza
  * dentro de su marco según el scroll del modal (useScroll con
@@ -43,6 +28,7 @@ const ALL_PROJECTS = [
 function ProjectNode({ project, index, scrollRef, onOpen }) {
   const cardRef = useRef(null);
   const prefersReduced = useReducedMotion();
+  const { t } = useLanguage();
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -122,7 +108,7 @@ function ProjectNode({ project, index, scrollRef, onOpen }) {
           className="mt-1 inline-flex w-fit cursor-pointer items-center gap-2 rounded-lg bg-gradient-to-br from-[#2DD4BF] to-[#0D9488] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_14px_rgba(45,212,191,0.25)]"
         >
           <Eye className="h-4 w-4" />
-          Ver proyecto completo
+          {t("projects.viewFullProject")}
         </motion.button>
       </div>
     </motion.div>
@@ -138,12 +124,33 @@ function ProjectNode({ project, index, scrollRef, onOpen }) {
  */
 export function ProjectsContent({ scrollRef }) {
   const prefersReduced = useReducedMotion();
+  const { t } = useLanguage();
+  const { professionalProjects, personalProjects } = useContent();
   const [selected, setSelected] = useState(null);
 
   const containerRef = useRef(null);
   const nodeEls = useRef(new Map());
   const [edges, setEdges] = useState([]);
   const [svgSize, setSvgSize] = useState({ width: 0, height: 0 });
+
+  /** Pipeline único: profesionales primero, luego personales. */
+  const allProjects = useMemo(
+    () => [
+      ...professionalProjects.map((p) => ({
+        ...p,
+        key: `pro-${p.id}`,
+        category: t("projects.professional"),
+        categoryColor: TEAL,
+      })),
+      ...personalProjects.map((p) => ({
+        ...p,
+        key: `per-${p.id}`,
+        category: t("projects.personal"),
+        categoryColor: "#818CF8",
+      })),
+    ],
+    [professionalProjects, personalProjects, t],
+  );
 
   const setNodeRef = (key) => (el) => {
     if (el) nodeEls.current.set(key, el);
@@ -163,9 +170,9 @@ export function ProjectsContent({ scrollRef }) {
     });
 
     const next = [];
-    for (let i = 0; i < ALL_PROJECTS.length - 1; i++) {
-      const a = nodeEls.current.get(ALL_PROJECTS[i].key);
-      const b = nodeEls.current.get(ALL_PROJECTS[i + 1].key);
+    for (let i = 0; i < allProjects.length - 1; i++) {
+      const a = nodeEls.current.get(allProjects[i].key);
+      const b = nodeEls.current.get(allProjects[i + 1].key);
       if (!a || !b) continue;
 
       const x1 = a.offsetLeft + a.offsetWidth / 2;
@@ -182,7 +189,7 @@ export function ProjectsContent({ scrollRef }) {
       });
     }
     setEdges(next);
-  }, []);
+  }, [allProjects]);
 
   useEffect(() => {
     measure();
@@ -196,7 +203,7 @@ export function ProjectsContent({ scrollRef }) {
   return (
     <>
       <p className="wf-font-mono mb-8 text-center text-xs text-[#5B6A8A]">
-        pipeline/projects · {ALL_PROJECTS.length} nodos · exit 0
+        {t("projects.pipelineStatus", allProjects.length)}
       </p>
 
       <div
@@ -210,7 +217,7 @@ export function ProjectsContent({ scrollRef }) {
           reducedMotion={prefersReduced ?? false}
         />
 
-        {ALL_PROJECTS.map((project, index) => (
+        {allProjects.map((project, index) => (
           <div
             key={project.key}
             ref={setNodeRef(project.key)}

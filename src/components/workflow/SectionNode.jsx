@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Eye, Zap } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { NODE_ICONS } from "./node-icons";
 
 /**
@@ -12,6 +13,7 @@ import { NODE_ICONS } from "./node-icons";
  */
 export function SectionNode({ section, isLatest, canContinue, onOpenModal, onContinue }) {
   const Icon = NODE_ICONS[section.icon];
+  const { t } = useLanguage();
 
   return (
     <motion.div
@@ -50,7 +52,7 @@ export function SectionNode({ section, isLatest, canContinue, onOpenModal, onCon
 
           <span className="wf-font-mono flex shrink-0 items-center gap-1 rounded-full border border-[#34D399]/30 bg-[#34D399]/10 px-2.5 py-1 text-[10px] text-[#34D399]">
             <Check className="h-3 w-3" />
-            Completado
+            {t("sectionNode.completed")}
           </span>
         </div>
 
@@ -73,7 +75,7 @@ export function SectionNode({ section, isLatest, canContinue, onOpenModal, onCon
             className="wf-glass inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-[#EFF4FF] transition-colors hover:border-[rgba(76,139,245,0.4)]"
           >
             <Eye className="h-4 w-4" />
-            Ver detalles
+            {t("sectionNode.viewDetails")}
           </motion.button>
 
           {isLatest && canContinue && (
@@ -84,7 +86,7 @@ export function SectionNode({ section, isLatest, canContinue, onOpenModal, onCon
               whileTap={{ scale: 0.97 }}
               className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-gradient-to-br from-[#38BDF8] to-[#4C8BF5] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_16px_rgba(56,189,248,0.3)]"
             >
-              Continuar
+              {t("sectionNode.continueCta")}
               <ArrowRight className="h-4 w-4" />
             </motion.button>
           )}

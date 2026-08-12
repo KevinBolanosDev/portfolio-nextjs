@@ -12,12 +12,9 @@ import {
   ExternalLink,
   GraduationCap,
 } from "lucide-react";
-import {
-  allTechnologies,
-  certifications,
-  education,
-  workExperience,
-} from "@/lib/data";
+import { allTechnologies } from "@/lib/data";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { useContent } from "@/lib/i18n/use-content";
 import { TechIcon } from "@/lib/icons";
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -229,14 +226,15 @@ function TechPipeline({ viewport }) {
   );
 }
 
-function ExperienceCards({ viewport }) {
+function ExperienceCards({ viewport, workExperience }) {
+  const { t } = useLanguage();
+
   if (!workExperience || workExperience.length === 0) {
     return (
       <div className="wf-glass flex flex-col items-center rounded-xl border-dashed px-4 py-8 text-center">
         <Briefcase className="mb-3 h-10 w-10 text-[#5B6A8A]" />
         <p className="text-sm text-[#94A3C8]">
-          Actualmente enfocado en proyectos freelance y desarrollo de
-          plataformas SaaS como AriaLeads y AireHub.
+          {t("skills.fallbackExperience")}
         </p>
       </div>
     );
@@ -289,7 +287,9 @@ function ExperienceCards({ viewport }) {
   );
 }
 
-function EducationTimeline({ viewport }) {
+function EducationTimeline({ viewport, education }) {
+  const { t } = useLanguage();
+
   return (
     <div>
       {education.map((edu, index) => {
@@ -372,12 +372,12 @@ function EducationTimeline({ viewport }) {
                   {isCompleted ? (
                     <>
                       <Award className="h-3 w-3" />
-                      Completado
+                      {t("skills.statusCompleted")}
                     </>
                   ) : (
                     <>
                       <Clock className="h-3 w-3" />
-                      En curso
+                      {t("skills.statusInProgress")}
                     </>
                   )}
                 </span>
@@ -390,7 +390,7 @@ function EducationTimeline({ viewport }) {
                     className="inline-flex items-center gap-1 text-xs text-[#7CB0FF] hover:underline"
                   >
                     <ExternalLink className="h-3 w-3" />
-                    Ver certificado
+                    {t("skills.viewCertificate")}
                   </a>
                 )}
               </div>
@@ -402,7 +402,9 @@ function EducationTimeline({ viewport }) {
   );
 }
 
-function CertificationRows({ viewport }) {
+function CertificationRows({ viewport, certifications }) {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-2">
       {certifications.map((cert, index) => (
@@ -443,7 +445,7 @@ function CertificationRows({ viewport }) {
                 href={cert.certificate}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Ver certificado: ${cert.title}`}
+                aria-label={t("skills.viewCertificateAria", cert.title)}
                 className="rounded-md p-1.5 text-[#5B6A8A] transition-colors hover:text-[#7CB0FF]"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -463,6 +465,8 @@ function CertificationRows({ viewport }) {
  * (whileInView con root en el contenedor scrolleable del shell).
  */
 export function SkillsContent({ scrollRef }) {
+  const { t } = useLanguage();
+  const { education, certifications, workExperience } = useContent();
   const viewport = {
     root: scrollRef,
     once: true,
@@ -474,8 +478,8 @@ export function SkillsContent({ scrollRef }) {
       <section>
         <SectionHeader
           icon={Cpu}
-          title="Stack Tecnológico"
-          subtitle="Tecnologías y herramientas que domino"
+          title={t("skills.techStackTitle")}
+          subtitle={t("skills.techStackSubtitle")}
           viewport={viewport}
         />
         <TechPipeline viewport={viewport} />
@@ -484,31 +488,31 @@ export function SkillsContent({ scrollRef }) {
       <section>
         <SectionHeader
           icon={Briefcase}
-          title="Experiencia Laboral"
-          subtitle="Proyectos profesionales"
+          title={t("skills.experienceTitle")}
+          subtitle={t("skills.experienceSubtitle")}
           viewport={viewport}
         />
-        <ExperienceCards viewport={viewport} />
+        <ExperienceCards viewport={viewport} workExperience={workExperience} />
       </section>
 
       <section>
         <SectionHeader
           icon={GraduationCap}
-          title="Formación Académica"
-          subtitle="Educación y bootcamps"
+          title={t("skills.educationTitle")}
+          subtitle={t("skills.educationSubtitle")}
           viewport={viewport}
         />
-        <EducationTimeline viewport={viewport} />
+        <EducationTimeline viewport={viewport} education={education} />
       </section>
 
       <section>
         <SectionHeader
           icon={BookOpen}
-          title="Certificaciones"
-          subtitle="Cursos adicionales"
+          title={t("skills.certificationsTitle")}
+          subtitle={t("skills.certificationsSubtitle")}
           viewport={viewport}
         />
-        <CertificationRows viewport={viewport} />
+        <CertificationRows viewport={viewport} certifications={certifications} />
       </section>
     </div>
   );

@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, RotateCcw } from "lucide-react";
-import { workflowSections } from "@/lib/data/workflowNodes";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { useContent } from "@/lib/i18n/use-content";
 import { NODE_ICONS } from "./node-icons";
 
 /**
@@ -10,6 +11,9 @@ import { NODE_ICONS } from "./node-icons";
  * abren el modal de cada sección + botón para reproducir la experiencia.
  */
 export function WorkflowComplete({ onReplay, onOpenModal }) {
+  const { t } = useLanguage();
+  const { workflowSections } = useContent();
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -28,16 +32,15 @@ export function WorkflowComplete({ onReplay, onOpenModal }) {
 
         <div>
           <h2 className="wf-font-display text-3xl font-bold text-[#EFF4FF]">
-            Workflow completado
+            {t("workflowComplete.title")}
           </h2>
           <p className="wf-font-mono mt-2 text-xs text-[#34D399]">
-            4/4 nodos · exit 0 · pipeline ok
+            {t("workflowComplete.status")}
           </p>
         </div>
 
         <p className="max-w-md text-sm leading-relaxed text-[#94A3C8]">
-          Ya conoces el mapa completo. Explora cualquier sección directamente
-          desde aquí, o vuelve a ejecutar el pipeline cuando quieras.
+          {t("workflowComplete.description")}
         </p>
 
         <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4">
@@ -74,7 +77,7 @@ export function WorkflowComplete({ onReplay, onOpenModal }) {
           className="wf-font-mono inline-flex cursor-pointer items-center gap-2 text-xs text-[#5B6A8A] transition-colors hover:text-[#94A3C8]"
         >
           <RotateCcw className="h-3.5 w-3.5" />
-          Reproducir de nuevo
+          {t("workflowComplete.replay")}
         </button>
       </div>
     </motion.div>

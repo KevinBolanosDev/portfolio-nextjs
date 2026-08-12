@@ -21,7 +21,7 @@ export const profile = {
  
     "Tengo experiencia trabajando con React.js o Next.js, utilizando herramientas como TailwindCSS y Shadcn para construir interfaces eficientes y mantenibles. Además, manejo JavaScript y TypeScript, lo que me permite desarrollar soluciones robustas y bien estructuradas.",
  
-    "Complemento mi perfil como desarrollador backend usando Node.js, nestjs, desarrollo de APIs y construcción de sistemas CRUD, así como buen desarrollo en base de datos SQL y NoSQL como  PostgreSQL y MongoDB con Prisma. También tengo experiencia utilizando Docker y servicios como Supabase para db entornos cloud.",
+    "Complemento mi perfil como desarrollador backend usando Node.js, Nestjs, desarrollo de APIs y construcción de sistemas CRUD, así como buen desarrollo en base de datos SQL y NoSQL como  PostgreSQL y MongoDB con Prisma. También tengo experiencia utilizando Docker y servicios como Supabase para db entornos cloud.",
  
     "También tengo conocimientos en como desplegar aplicaciones web en entornos de producción, desarrollo o testing utilizando servicios como Netlify, Vercel, Railway, Render asegurando que las aplicaciones sean accesibles y confiables para los usuarios finales.",
 

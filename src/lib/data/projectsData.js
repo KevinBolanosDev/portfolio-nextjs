@@ -4,185 +4,139 @@ import { getStorageUrl } from "../supabase";
 export const professionalProjects = [
   {
     id: 1,
-    title: "AriaLeads",
+    title: "Aria Insurtech",
     description:
-      "Plataforma SaaS empresarial de gestión integral de leads para la industria de seguros de vida, con dashboards para administradores y agentes.",
-    image: getStorageUrl("portfolio-images", "projects/project-001.png"),
+      "Aria InsurTech es una plataforma SaaS empresarial a gran escala para la gestión de clientes potenciales de seguros de un extremo a otro, creada con React 19 y Next.js 16 (App Router). El sistema cubre el ciclo de vida completo de compra, venta, distribución y gestión de clientes potenciales en los sectores comerciales y de seguros de vida, un mercado integrado, análisis financieros, un motor de recompensas/gamificación y un programa de socios afiliados.",
+    image: getStorageUrl("portfolio-images", "projects/ariainsurtech/login.png"),
     technologies: ["React.js", "Next.js", "TailwindCSS", "Shadcn/ui"],
     githubUrl: null, // Proyecto privado
-    demoUrl: "https://login.arialeads.com",
+    demoUrl: "https://ariainsurtech.com",
     gallery: [
-      {
-        src: getStorageUrl("portfolio-images", "projects/arialeads/login.png"),
-        title: "Página de Login",
-        description:
-          "Sistema de autenticación seguro con diseño moderno y call-to-action atractivo.",
-        size: "large", // 2x2 - Destacada
-      },
-      {
-        src: getStorageUrl("portfolio-images", "projects/arialeads/admin.png"),
-        title: "Admin Control Center",
-        description:
-          "Panel de administración con métricas en tiempo real: 38,734 agentes totales, 98.3% activos.",
-        size: "wide", // 2x1 - Panorámica
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/arialeads/agent-dash.png"
-        ),
-        title: "Agent Dashboard",
-        description:
-          "Dashboard personalizado para agentes con KPIs, leads y tracking de premiums ($692,659+).",
-        size: "wide", // 2x1 - Panorámica
-      },
-      {
-        src: getStorageUrl("portfolio-images", "projects/arialeads/leads.png"),
-        title: "Gestión de Leads",
-        description:
-          "Sistema de gestión de leads con filtros avanzados, categorías (Gold/Silver) y exportación.",
-        size: "wide", // 2x1 - Panorámica
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/arialeads/marketplace.png"
-        ),
-        title: "Marketplace de Leads",
-        description:
-          "Mapa interactivo de USA con +160,000 leads disponibles y filtros por estado/condado.",
-        size: "large", // 2x2 - Destacada (tiene mapa)
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/arialeads/support.png"
-        ),
-        title: "Support",
-        description:
-          "Sistema de soporte con tickets, incidencias y seguimiento de casos.",
-        size: "wide", // 2x1 - Panorámica
-      },
-    ],
+  {
+    src: getStorageUrl("portfolio-images", "projects/ariainsurtech/dashboard.png"),
+    title: "Dashboard Principal",
+    description:
+      "Panel de control administrativo con métricas en tiempo real, gestión de agentes y seguimiento financiero centralizado.",
+    size: "large",
+  },
+  {
+    src: getStorageUrl("portfolio-images", "projects/ariainsurtech/aria-tech.png"),
+    title: "AriaTech Agent",
+    description:
+      "Portal SaaS para agentes con herramientas de underwriting, productos de suscripción y acceso SSO a AriaDesk.",
+    size: "wide",
+  },
+  {
+    src: getStorageUrl("portfolio-images", "projects/ariainsurtech/aria-rewards.png"),
+    title: "Aria Rewards",
+    description:
+      "Sistema de gamificación con catálogo de recompensas, acumulación de puntos por actividad y tracking de órdenes de SWAG.",
+    size: "wide",
+  },
+  {
+    src: getStorageUrl("portfolio-images", "projects/ariainsurtech/aria-training.png"),
+    title: "Training Center",
+    description:
+      "Plataforma de cursos self-paced con video resources, módulos de bootcamp y certificación para agentes.",
+    size: "wide",
+  },
+  {
+    src: getStorageUrl("portfolio-images", "projects/ariainsurtech/marketplace.png"),
+    title: "Marketplace de Leads",
+    description:
+      "Marketplace con mapa interactivo de EE.UU., filtros por estado/condado, campañas de mailing y sistema de Lead Packs con WebSocket en tiempo real.",
+    size: "large",
+  },
+],
     documentation: {
       overview:
-        "AriaLeads es una plataforma SaaS empresarial de gestión integral de leads (clientes potenciales) desarrollada con tecnologías modernas de React/Next.js. El sistema está diseñado para la compra, venta, distribución y gestión de leads en la industria de seguros de vida y otros sectores comerciales.",
+        "AriaInsurTech es una plataforma SaaS empresarial a gran escala para la gestión de clientes potenciales de seguros de un extremo a otro, creada con React 19 y Next.js 16 (App Router). El sistema cubre el ciclo de vida completo de compra, venta, distribución y gestión de clientes potenciales en los sectores comerciales y de seguros de vida, un mercado integrado, análisis financieros, un motor de recompensas/gamificación y un programa de socios afiliados.",
       features: [
-        "Sistema de autenticación con roles (Admin/Agent)",
-        "Admin Control Center con métricas en tiempo real (+38,000 agentes activos)",
-        "Dashboard de agente con KPIs personalizados y seguimiento de premiums",
-        "Marketplace de leads con mapa interactivo de USA (+160,000 leads disponibles)",
+        "Sistema de autenticación basado en roles (Admin/Agent) con middleware JWT, actualización automática de tokens y protección de rutas",
+        "Centro de control de administración con más de 26 módulos de gestión que incluyen gestión de agentes, gestión de campañas, distribución de paquetes de clientes potenciales y supervisión financiera.",
+        "Mercado líder con mapa interactivo de disponibilidad en EE. UU. tipo de cliente potencial (enviado por correo, mercado, digital, paquetes de clientes potenciales) y nivel (oro/plata).",
+        "Mercado de productos SaaS con gestión de suscripciones, códigos promocionales, códigos de descuento y un flujo de pago completo.",
         "Gestión de leads por categorías (Mailed, Marketplace, Digital, Lead Packs)",
-        "Filtros avanzados por estado, condado, campaña y tipo de lead (Gold/Silver)",
-        "Sistema financiero con tracking de revenue ($692,659+ en premiums)",
-        "Modo claro/oscuro y diseño completamente responsivo",
+        "Panel de agentes con KPI personalizados, sistema de billetera/créditos, carrito de compras y gestión de pedidos.",
       ],
       techStack:
-        "Frontend con React.js/Next.js y Shadcn con TailwindCSS para UI moderna. backend con Python para gestión de datos a gran escala. Integración con APIs de geolocalización para mapa interactivo.",
+        "Frontend creado con React 19 / Next.js 16 (App Router) y Shadcn/ui + Radix UI con TailwindCSS para una interfaz moderna basada en componentes. Gestión de estado a través de TanStack React Query (estado del servidor), Redux Toolkit + Persist (estado global del cliente) y Zustand (almacenes de funciones aisladas). Visualización de datos con Recharts. Animaciones vía Motion (Framer Motion). Arrastra y suelta con @dnd-kit. Generación de PDF con @react-pdf/renderer + pdf-lib. Implementado con Docker y en contenedores para entornos de producción.",
       challenges:
-        "Desarrollar una plataforma escalable capaz de manejar decenas de miles de agentes y cientos de miles de leads, con dashboards diferenciados para administradores y agentes, manteniendo un rendimiento óptimo.",
+        "Creación de una plataforma escalable y multifunción con más de 26 módulos de administración y más de 12 módulos de agentes, cada uno con distintos flujos de datos y permisos. Gestionar estados complejos a través de tres soluciones de gestión de estados diferentes (React Query, Redux, Zustand) manteniendo un rendimiento óptimo. Implementar un sistema de diseño personalizado con tokens de marca estrictos (sin valores hexadecimales codificados), reglas seleccionadas de degradado/color, todo ello aplicado mediante linting y documentación. Admite análisis financieros en tiempo real.",
     },
   },
   {
     id: 2,
-    title: "AireHub",
-    description:
-      "Plataforma integral para agentes de seguros con dashboard de métricas, sistema de logros, bootcamp de entrenamiento y gestión de carriers. Incluye integración con AriaLeads.",
-    image: getStorageUrl("portfolio-images", "projects/airehub/dashboard.png"),
-    technologies: ["Next.js", "React.js", "shadcn/ui", "TailwindCSS"],
-    githubUrl: null, // Proyecto privado
-    demoUrl: "https://airehub-front-dev.up.railway.app",
-    gallery: [
-      {
-        src: getStorageUrl("portfolio-images", "projects/airehub/login.png"),
-        title: "Página de Login",
-        description:
-          "Sistema de autenticación con preview del dashboard y analytics en tiempo real.",
-        size: "large", // 2x2 - Destacada
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/airehub/dashboard.png"
-        ),
-        title: "Dashboard Principal",
-        description:
-          "Panel con KPIs: Monthly Premium $4,749, Active Policies 37, Team Members 979, Persistency 97.3%.",
-        size: "wide", // 2x1 - Panorámica
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/airehub/leaderboard.png"
-        ),
-        title: "Sistema de Logros",
-        description:
-          "Achievement Badges con Rankings, progreso de badges (22% completion) y journey de logros.",
-        size: "wide", // 2x1 - Panorámica
-      },
-      {
-        src: getStorageUrl("portfolio-images", "projects/airehub/bootcamp.png"),
-        title: "Bootcamp Courses",
-        description:
-          "Centro de cursos con AIRE Mortgage Protection Training y gestión de instructores.",
-        size: "small", // 1x1 - Cuadrado
-      },
-      {
-        src: getStorageUrl("portfolio-images", "projects/airehub/training.png"),
-        title: "Centro de Entrenamiento",
-        description:
-          "Training Center con videos categorizados, progreso de aprendizaje y gestión de contenido.",
-        size: "small", // 1x1 - Cuadrado
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/airehub/carriers-mobile.png"
-        ),
-        title: "Carriers (Mobile)",
-        description:
-          "Vista móvil de gestión de partnerships con carriers, premiums y políticas.",
-        size: "tall", // 1x2 - Móvil/Vertical
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/airehub/mobile-menu.png"
-        ),
-        title: "Navegación Móvil",
-        description:
-          "Menú responsive con todas las secciones: Dashboard, Leaderboard, Tools, Leads, Policies, etc.",
-        size: "tall", // 1x2 - Móvil/Vertical
-      },
-      {
-        src: getStorageUrl(
-          "portfolio-images",
-          "projects/airehub/arialeads-integration.png"
-        ),
-        title: "Integración AriaLeads",
-        description:
-          "AriaLeads incrustado dentro de AireHub para gestión unificada de leads y premiums.",
-        size: "large", // 2x2 - Destacada
-      },
-    ],
-    documentation: {
-      overview:
-        "AireHub es una plataforma integral diseñada para agentes de seguros de vida que centraliza todas las herramientas necesarias para su operación diaria. Incluye dashboard de métricas, sistema de gamificación con badges, bootcamp de entrenamiento, gestión de carriers y la integración completa con AriaLeads para la gestión de leads.",
-      features: [
-        "Dashboard con KPIs en tiempo real (Premium, Policies, Team Members, Persistency)",
-        "Sistema de Achievement Badges con rankings y progreso gamificado",
-        "Bootcamp de cursos con AIRE Mortgage Protection Training",
-        "Centro de Training con videos categorizados y tracking de progreso",
-        "Quick Access a Zoom, WhatsApp, Slack y redes sociales",
-        "Gestión de Carriers con partnerships y métricas",
-        "Diseño completamente responsivo (desktop y mobile)",
-        "Integración seamless con AriaLeads para gestión de leads",
-      ],
-      techStack:
-        "Next.js 14 con App Router para el frontend, React.js para componentes, shadcn/ui para sistema de diseño, TailwindCSS para estilos utility-first. Arquitectura modular con integración de microservicios.",
-      challenges:
-        "Integrar AriaLeads como módulo dentro de AireHub manteniendo la coherencia de la UI, implementar el sistema de gamificación con badges y crear un bootcamp de entrenamiento con tracking de progreso.",
+    title: "AriaDesk",
+  description:
+    "Plataforma integral de gestión de agencias de seguros con control centralizado de portafolio, casos, campañas y análisis en tiempo real. Integración con Gmail y Google Calendar.",
+  image: getStorageUrl("portfolio-images", "projects/ariadesk/login.png"),
+  technologies: ["Next.js 15", "React 19", "Redux Toolkit", "TailwindCSS v4", "i18n"],
+  githubUrl: null, // Proyecto privado
+  demoUrl: "https://aria-desk.com/home",
+  gallery: [
+    {
+      src: getStorageUrl("portfolio-images", "projects/ariadesk/login.png"),
+      title: "Autenticación con Google",
+      description:
+        "Sistema de login seguro con SSO integrado para acceso rápido a la plataforma.",
+      size: "large",
     },
+    {
+      src: getStorageUrl("portfolio-images", "projects/ariadesk/dashboard.png"),
+      title: "Dashboard Principal",
+      description:
+        "Panel centralizado con KPIs, análisis en tiempo real y acceso rápido a herramientas principales.",
+      size: "wide",
+    },
+    {
+      src: getStorageUrl("portfolio-images", "projects/ariadesk/cases.png"),
+      title: "Gestión de Casos",
+      description:
+        "Flujo multi-paso para creación y seguimiento de casos con validación en tiempo real.",
+      size: "wide",
+    },
+    {
+      src: getStorageUrl("portfolio-images", "projects/ariadesk/book-of-business.png"),
+      title: "Portafolio de Seguros",
+      description:
+        "Vista centralizada de clientes, pólizas activas y gestión de relaciones.",
+      size: "small",
+    },
+    {
+      src: getStorageUrl("portfolio-images", "projects/ariadesk/campaigns.png"),
+      title: "Campañas de Email",
+      description:
+        "Creación y programación de campañas con integración directa a Gmail.",
+      size: "small",
+    },
+    {
+      src: getStorageUrl("portfolio-images", "projects/ariadesk/wizard-chat.png"),
+      title: "Herramientas & Chat",
+      description:
+        "Acceso rápido a herramientas, Wizard Chat inteligente y centro de soporte.",
+      size: "tall",
+    },
+  ],
+  documentation: {
+    overview:
+      "AriaDesk es una plataforma SaaS diseñada para agentes de seguros, centralizando la gestión de su negocio. Permite administrar portafolio de clientes, casos complejos, campañas de marketing, análisis de rendimiento e integración con herramientas externas.",
+    features: [
+      "Gestión centralizada de portafolio de seguros (Book of Business)",
+      "Flujo de creación de casos multi-paso con validación",
+      "Campañas de email integradas con Gmail",
+      "Dashboard con analytics y KPIs en tiempo real",
+      "Soporte multi-carriers con gestión unificada",
+      "Integración con Google Calendar para citas y recordatorios",
+      "Sistema de permisos y gestión de usuarios",
+      "Diseño completamente responsivo (desktop y mobile)",
+      "Internacionalización (English/Spanish)",
+    ],
+    techStack:
+      "Next.js 15 con App Router, React 19, Redux Toolkit para estado global, React Hook Form + Zod para validación, TailwindCSS v4, i18next para multiidioma. Integración con APIs REST y Google Services.",
+    challenges:
+      "Diseñar flujos complejos multi-paso con persistencia de borradores, validación dual client/server, integración seamless con Gmail y Google Calendar, soporte multi-tenant con headers JWT-based.",
+  },
   },
 ];
 
@@ -190,56 +144,6 @@ export const professionalProjects = [
 export const projects = [
   {
     id: 1,
-    title: "Primer CV",
-    description:
-      "Mi primer proyecto web: un CV personal construido desde cero con HTML y CSS, aplicando fundamentos de estructura web y diseño visual.",
-    image: getStorageUrl("portfolio-images", "projects/first-cv.png"),
-    technologies: ["HTML", "CSS"],
-    githubUrl: "https://github.com/KevinBolanosDev/html_intro_cv",
-    demoUrl: "https://kevinbolanosdev.github.io/html_intro_cv/",
-    documentation: {
-      overview:
-        "Este fue mi primer acercamiento al desarrollo web. Un currículum vitae interactivo que muestra mi información profesional, habilidades e intereses tecnológicos con un diseño moderno y responsivo.",
-      features: [
-        "Diseño visual atractivo con gradientes y tipografía personalizada",
-        "Sección de habilidades con barras de progreso",
-        "Intereses tecnológicos organizados visualmente",
-        "Información de contacto con iconos",
-        "Layout estructurado con CSS Grid y Flexbox",
-      ],
-      techStack:
-        "HTML5 semántico para la estructura del documento. CSS3 para estilos, incluyendo gradientes, flexbox y diseño responsivo.",
-      challenges:
-        "Aprender a estructurar correctamente un documento HTML y aplicar estilos CSS para lograr un diseño profesional fue el primer gran paso en mi camino como desarrollador.",
-    },
-  },
-  {
-    id: 2,
-    title: "First Portfolio Web",
-    description:
-      "Mi primer portafolio web con múltiples secciones, navegación entre tabs, información personal, proyectos y formulario de contacto.",
-    image: getStorageUrl("portfolio-images", "projects/first-portfolio.png"),
-    technologies: ["HTML", "CSS", "JavaScript"],
-    githubUrl: "https://github.com/KevinBolanosDev/personal-cv",
-    demoUrl: "https://kevin-bolanos-dev-cv.netlify.app/",
-    documentation: {
-      overview:
-        "Un portafolio web completo que presenta mi perfil como Desarrollador Full-Stack MERN, con un diseño moderno usando colores oscuros y acentos en verde azulado.",
-      features: [
-        "Navegación entre secciones (Sobre mí, Educación, Habilidades, Proyectos, Contacto)",
-        "Diseño responsivo con elementos geométricos decorativos",
-        "Sección de presentación con foto de perfil",
-        "Formulario de contacto funcional",
-        "Animaciones y transiciones suaves",
-      ],
-      techStack:
-        "HTML5 semántico para la estructura, CSS3 con animaciones y diseño responsivo, JavaScript vanilla para interactividad y navegación.",
-      challenges:
-        "Crear un diseño visualmente atractivo con formas geométricas flotantes y lograr una navegación fluida entre las diferentes secciones del portafolio.",
-    },
-  },
-  {
-    id: 3,
     title: "News Homepage",
     description:
       "Página de noticias moderna con múltiples secciones, desarrollada como challenge de Frontend Mentor usando React y TailwindCSS.",
@@ -265,7 +169,7 @@ export const projects = [
     },
   },
   {
-    id: 4,
+    id: 2,
     title: "Second Portfolio Web",
     description:
       "Mi segundo portafolio profesional con diseño oscuro futurista, secciones interactivas, galería de proyectos y formulario de contacto funcional.",

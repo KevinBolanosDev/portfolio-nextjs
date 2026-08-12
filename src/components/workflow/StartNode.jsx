@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Loader2, Play } from "lucide-react";
-import { startNode } from "@/lib/data/workflowNodes";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { useContent } from "@/lib/i18n/use-content";
 
 /**
  * Nodo inicial del pipeline (orchestrator): bienvenida + CTA "Iniciar".
@@ -12,6 +13,8 @@ import { startNode } from "@/lib/data/workflowNodes";
 export function StartNode({ status = "idle", onStart }) {
   const isIdle = status === "idle";
   const isRunning = status === "running";
+  const { t } = useLanguage();
+  const { startNode } = useContent();
 
   return (
     <motion.div
@@ -30,7 +33,7 @@ export function StartNode({ status = "idle", onStart }) {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[#34D399]" />
           </span>
           <span className="wf-font-mono text-xs uppercase tracking-widest text-[#94A3C8]">
-            {isRunning ? "Running" : "System ready"}
+            {isRunning ? t("start.running") : t("start.systemReady")}
           </span>
         </div>
 
@@ -59,18 +62,18 @@ export function StartNode({ status = "idle", onStart }) {
             {isRunning ? (
               <>
                 <Loader2 className="h-5 w-5 animate-spin" />
-                Ejecutando…
+                {t("start.runningCta")}
               </>
             ) : (
               <>
                 <Play className="h-5 w-5 fill-current" />
-                Iniciar workflow
+                {t("start.startCta")}
               </>
             )}
           </motion.button>
         ) : (
           <p className="wf-font-mono flex items-center gap-2 text-xs text-[#34D399]">
-            ✓ pipeline iniciado
+            {t("start.pipelineStarted")}
           </p>
         )}
 
